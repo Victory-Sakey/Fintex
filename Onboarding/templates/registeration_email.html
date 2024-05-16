@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Verification Code - Crest Alpha Trade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: black;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, p {
+            margin-bottom: 20px;
+        }
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dear {{ user }},</h1>
+
+        <p>Thank you for choosing Crest Alpha Trade!</p>
+
+        <p>To ensure the security of your account, we have sent you a verification code. Please use the following code to complete the verification process:</p>
+           <div class="bg-indigo-700 p-3">
+            <h1 class="code text-center text-white p-5  font-bold text-2xl" style="text-align: center;">
+              {{ verification_code }}
+                </h1>
+           </div>
+           <p>If you did not request this code, please ignore this email. Your account security is important to us, and we recommend that you do not share this code with anyone.</p>
+
+        <p>Should you have any questions, concerns, or feedback along the way, don't hesitate to reach out to our dedicated support team at <a href="mailto:crestalphatrade.com@gmail.com">crestalphatrade.com@gmail.com</a>. We're here to assist you every step of the way.</p>
+            <p>Thank you for your cooperation.</p>
+        <p class="signature">Best regards,<br>Crest Alpha Trade<br><a href="https://crestalphatrade.com">crestalphatrade.com</a></p>
+    </div>
+</body>
+</html>

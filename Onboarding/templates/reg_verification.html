@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user }} Email Verification | Crest Alpha Trade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-gray-800  to-blue-900 container mx-auto">
+    <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+          <img class="mx-auto h-10 w-auto" src="{% static 'Digital_World__1_-removebg-preview.png' %}" alt="Your Company">
+        </div>
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Verify your email, {{ user }} 📧</h2>
+        <h2 class="mt-5 text-center text-xl  leading-9 tracking-tight text-white">Check your Email Inbox for the 6 digits code.</h2>
+    <div class="mt-2 sm:mx-auto sm:w-full sm:max-w-sm ">
+        
+   <form class="space-y-6" method="POST" action="">
+      {% csrf_token %}
+    <div>
+        <div class="mt-2">
+            {{ form }}
+    </div>
+    <h2 class=" text-left text-sm font-bold tracking-tight text-red-500 font-mono">{{ message }}</h2>
+</div>
+<input type="submit" value="Verify" class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold cursor-pointer  text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+</div>
+</div>
+    
+   </form>
+  
+
+  
+
+
+  
+   
+</body>
+</html>

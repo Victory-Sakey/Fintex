@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Submitted Successfully</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white">
+    <!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full">
+  <body class="h-full">
+  ```
+-->
+<main class="grid min-h-full place-items-center py-12 sm:py-12 lg:px-10 px-5 ">
+    <div class="text-center">
+        <div class="img" style="align-items: center; justify-content: center; display: flex;">
+            <img src="{% static 'Mar-Business_18.jpg' %}?v=1" alt="" style="align-items: center; justify-content: center; display: flex; width: 500px;">
+        </div>
+
+      <h1 class="mt-4 text-3xl font-bold tracking-tight text-blue-700 sm:text-5xl">We've recieved your message {{ name }}! </h1>
+      <p class="mt-6 text-base leading-7 text-gray-600 " style="font-size: 20px; padding-left: 50px; padding-right: 50px;">Thank you for reaching out to us. Your message has been successfully received. We have sent an email to the address you provided with further details. </p>
+      <div class="mt-10 flex items-center justify-center gap-x-6">
+        <a href="{% url 'Onboarding:Home' %}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go back home</a>
+        <a href="crestalphatrade.com@gmail.com" class="text-sm font-semibold text-gray-900">Contact support <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </main>
+  
+</body>
+</html>

@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crest Alpha Trade 💎  </title>
-    <link rel="stylesheet" href="{% static 'onboarding.css' %}?v=6">
+    <link rel="stylesheet" href="{% static 'onboarding.css' %}?v=10">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,56 +15,53 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </head>
-<body class="bg-gradient-to-r from-gray-800  to-blue-900">    
+<body class="bg-gradient-to-r from-gray-800  to-blue-900  scroll-smooth">    
   <header class=" md:bg-transparent">
     <nav class="flex justify-between items-center w-[92%]  mx-auto">
         <div>
-        <img src="{% static 'Digital_World__1_-removebg-preview.png' %}" class="cursor-pointer w-[350px] mt-4"alt="">
+       <a href="{% url 'Onboarding:Home' %}"> <img src="{% static 'Digital_World__1_-removebg-preview.png' %}" class="cursor-pointer w-[350px] mt-4"alt=""></a>
         </div>
         <div
             class="nav-links duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto  w-full flex items-center px-2 mt-6 text-white font-bold bg-blue-900 md:bg-transparent ">
             <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 ">
                 <li>
-                    <a class="text-cyan-400" href="#">Home</a>
+                    <a class="text-cyan-400" href="{% url 'Onboarding:Home' %}">Home</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400" href="#">About</a>
+                    <a class="hover:text-cyan-400" href="#about">About</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400" href="#">Services</a>
+                    <a class="hover:text-cyan-400" href="#services">Services</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400" href="#">Products</a>
-                </li>
-                <li>
-                    <a class="hover:text-cyan-400" href="#">Contacts</a>
+                    <a class="hover:text-cyan-400" href="#contacts">Contacts</a>
                 </li>
                
                 <li>
-                    <a class="hover:text-cyan-400 md:hidden block" href="#">Register</a>
+                    <a class="hover:text-cyan-400 md:hidden block" href="{% url 'Onboarding:Register' %}">Register</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400 md:hidden block" href="#">Login</a>
+                    <a class="hover:text-cyan-400 md:hidden block" href="{% url 'Onboarding:Login' %}">Login</a>
                 </li>
             </ul>
         </div>
         <div class="flex items-center gap-6">
-          <a class="text-white hidden md:block hover:text-cyan-500 mt-3" href="#">Login</a>
-            <button class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-[#87acec] mt-3 hidden md:block">Register</button>
+          <a class="text-white hidden md:block hover:text-cyan-500 mt-3" href="{% url 'Onboarding:Login' %}">Login</a>
+           <a href="{% url 'Onboarding:Register' %}"><button class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-[#87acec] mt-3 hidden md:block">Register</button></a>
             <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer text-[white] md:hidden"></ion-icon>
         </div>
 </header>
 
 <main>
-  <section id="hero ">
+  <section id="hero " data-aos="fade-up"  data-aos-once="true">
     <div class="hero container flex flex-col-reverse md:flex-row items-center justify-center align-middle  w-[92%] md:pt-[100px] lg:pt-[0px] pt-[100px] mx-auto pb-[100px] md:pb-[0px]">
     <div class="hero-text md:ml-[50px] w-full md:text-left text-center">
         <h1 class="bg-blue-600  rounded  p-2  w-[250px] text-white mb-2 text-left hidden md:block" >Welcome to Crest Alpha Trade</h1>
       <h2 class=" font-sans font-bold text-4xl  md:text-4xl lg:text-5xl text-white w-full md:w-[100%] lg:w-[90%] pb-4  " >The Future of Financing is Cryptocurrency.</h2>
       <p class="text-[#CCCCCC] md:text-[15px] lg:text-[18px] mt-3 md:w-[90%] lg:w-[80%] " >Trade foreign currencies on the largest and most liquid market in the world.</p>
       <div class="btn flex md:justify-start justify-center">
-        <button class="started bg-blue-700 text-white px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-white hover:text-blue-700 mt-5 mr-4 ">Get Started</button>
-        <button class="join bg-white text-blue-700 px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-blue-700 hover:text-white mt-5 ">Start Trading</button>
+        <a href="{% url 'Onboarding:Register' %}"><button class="started bg-blue-700 text-white px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-white hover:text-blue-700 mt-5 mr-4 ">Get Started</button></a>
+        <a href="{% url 'Onboarding:Login' %}"><button class="join bg-white text-blue-700 px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-blue-700 hover:text-white mt-5 ">Start Trading</button></a>
       </div>
     </div>
     <div class="hero-img w-[500px] md:w-[1100px] hidden md:block lg:w-full">
@@ -87,13 +85,261 @@
   </section>
   -->
 
-  
+  <section id="about" class="bg-white">
+    <div class="about container mx-auto  p-3 md:p-10  lg:flex-row flex-col  flex  justify-center" data-aos="fade-up"  data-aos-once="true">
+      <div class="about-info ml-[0px]  md:ml-8 mt-10">
+        <h1 class="md:text-3xl text-2xl text-blue-700 font-sans font-semibold pb-3">What is Crest Alpha Trade?</h1>
+        <p class="text-gray-700 w-[100%] lg:w-[80%]">Crest Alpha Trade is an award winning Forex and Commodities Broker, providing trading services and facilities to both retail and institutional clients. Through its policy of providing the best possible trading conditions to its clients and allowing both scalpers and traders using expert advisors unrestricted access to its liquidity, Crest Alpha Trade has positioned itself as the forex broker of choice for traders worldwide. 
+          At Crest Alpha Trade, we're dedicated to providing our clients with the most advanced and powerful trading tools in a wide range of markets For traders just starting out or seasoned traders already familiar with derivative trading, we offer the robust MetaTrader 4 and MetaTrader 5 platforms with the advantage of our competitive spreads and first class multi-lingual support. We also allow for flexible trading on a range of Forex and CFDs including Cryptocurrencies, Commodities, Indices and Binary Options through MetaTrader 4 and MetaTrader 5.</p>
+          <button class="started bg-blue-700 flex justify-center text-white px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold mt-5 mr-4 ">Get Started</button>
+        
+      </div>
+      <div class="about-img">
+        <img class="lg:w-[80%]  w-[1000px]" src="{% static '19198921.jpg' %}" alt="">
+      </div>
+    </div>
+  </section>
+
 
   
+  <section id="services" class="bg-white pt-10">
+    <div class="container mx-auto" data-aos="fade-up"  data-aos-once="true">
+        <div class="text-center mb-5">
+            <h2 class="font-semibold font-sans text-4xl text-blue-700 text-center">Our Services</h2>
+            <h2 class="font-extrabold text-blue-700">_______________</h2>
+        </div>
+        <div class="row text-gray-700 flex flex-col md:flex-row p-5">
+            <div class="col-lg-4 p-3">
+                <div class="card mb-4">
+                    <img src="{% static 'about_laptop.jpg' %}" class="card-img-top w-[500px]" alt="Service 2">
+                    <div class="card-body bg-blue-700 text-gray-700 p-5">
+                        <h5 class="card-title text-white font-bold text-center"><i class="fas fa-users"></i>Commodities</h5>
+                        <p class="text-center text-white ">Speculate on the prices of high profile commodities such as oil and gold.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 p-3">
+                <div class="card mb-4">
+                    <img src="{% static 'expertise2.jpg' %}" class="card-img-top w-[500px]" alt="Service 1">
+                    <div class="card-body bg-blue-700 p-5">
+                        <h5 class="card-title text-white font-bold text-center"><i class="fas fa-list-alt"></i>Forex</h5>
+                        <p class="card-text text-center text-white">Go long or go short on 25 Forex majors.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 p-3">
+                <div class="card mb-4">
+                    <img src="{% static 'expertise3.jpg' %}" class="card-img-top w-[500px]" alt="Service 3">
+                    <div class="card-body p-2 bg-blue-700">
+                        <h5 class="card-title text-white font-bold text-center"><i class="far fa-clock"></i>Cryptocurrencies</h5>
+                        <p class="card-text text-center text-white">Stay informed with real-time updates on predicted events and outcomes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section id="testimonial" class="text-gray-600 body-font relative bg-blue-900 ">
+  <div class="testimonial container px-5 py-24 mx-auto" data-aos="fade-up"  data-aos-once="true">
+    <h1 class="title-font  mb-[10px] md:text-4xl text-3xl font-bold tracking-tight text-white  text-center" data-aos="zoom-in"  data-aos-once="true">What our customers says</h1>
+    <p class="mt-4  text-xl  mb-[10px] text-center text-white" data-aos="zoom-in"  data-aos-once="true">Thousands of people get benefit</p>
+    <h2 class="font-extrabold text-center text-white mb-[20px]">_______________</h2>
+    <div class="flex flex-wrap -m-4" data-aos="zoom-in"  data-aos-once="true">
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-white p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6 text-gray-600">
+            Crest Alpha Trade has the simplest interface of all and also has the fastest entry point into the market.I was a banker who was deep in debt, but  with the help of Crest Alpha Trade ..., now I am living well and comfortable with my family</p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="{% static 'testimonial_img2.jpg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium text-blue-700">Emily Caulfield</span>
+              <span class="text-blue-700 text-sm">- Happy User</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-white p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700  mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6 text-gray-600">My name is William Tyler Pelicione. Few weeks I have traded with Crest Alpha Trade, i made enough profit of 2.8btc and my withdrawal was processed instantly. Crest Alpha Trade is the best....</p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="{% static 'testimonial_img.jpg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium text-blue-700">William Tyler Pelicione</span>
+              <span class="text-blue-700 text-sm">- Business Executive</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-white p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6 text-gray-600">This is a more than a trading company. Giving you guys 5 ratings for your support services. Great company. Awesome support.. Crest Alpha Trade is the best....</p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="{% static 'download (1).jpeg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium text-blue-700">Cherry Canaan</span>
+              <span class="text-blue-700 text-sm"> - Happy Customer</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      <div class="p-4 md:w-1/2 w-full">
+        <div class="h-full bg-white p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700 mb-4" viewBox="0 0 975.036 975.036">
+            <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
+          </svg>
+          <p class="leading-relaxed mb-6 text-gray-600">I encountered a small issue and reached out to the customer support team. Their response was prompt, and the issue was resolved quickly. It's refreshing to see a team that genuinely cares about its users.</p>
+          <a class="inline-flex items-center">
+            <img alt="testimonial" src="{% static '02.jpg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
+            <span class="flex-grow flex flex-col pl-4">
+              <span class="title-font font-medium text-blue-700">Josh Patrick</span>
+              <span class="text-blue-700 text-sm">- Satisfied Customer</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+   
+</section>
+
+ 
+<div id="contacts" class="px-5 grid gap-8 grid-cols-1 md:grid-cols-2 py-24 mx-auto bg-gray-100 text-gray-600 rounded-lg">
+    <div class="flex flex-col justify-center" data-aos="fade-up"  data-aos-once="true">
+        <div>
+            <h2 class="text-4xl text-blue-700 lg:text-5xl font-bold leading-tight">
+                Lets talk about everything!
+            </h2>
+            <div class="text-gray-700 mt-8">
+                Hate forms? Send us an&nbsp;
+                <a class="underline" href="mailto:someone@gmail.com">
+                    email
+                </a>
+                instead.
+            </div>
+        </div>
+        <div class="mt-12 text-center">
+            <img src="{% static 'pensive-curly-haired-female-student-calls-groupmate-via-smartphone-sits-chair-own-study-room-table-with-desk-lamp-notepads-sticky-notes-wall-with-written-information.jpg' %}" alt="Contact" />
+        </div>
+    </div>
+
+      <!-- Your contact form HTML goes here -->
+      <div class="contact-form" data-aos="fade-up"  data-aos-once="true">     
+    <form id="myForm" method="post" action="" data-submit-url="./Onboarding/views.py">
+      {% csrf_token %} 
+        <div>
+            <span class="uppercase text-sm text-gray-600 font-bold">
+                Full Name
+            </span>
+            <div>{{ form.name }}</div>
+        </div>
+        <div class="mt-8">
+            <span class="uppercase text-sm text-gray-600 font-bold">
+                Email
+            </span>
+          {{ form.email }}
+        </div>
+        <div class="mt-8">
+            <span class="uppercase text-sm text-gray-600 font-bold">
+                Phone Number
+            </span>
+            {{ form.number }}
+        </div>
+        <div class="mt-8">
+            <span class="uppercase text-sm text-gray-600 font-bold">
+                Message
+            </span>
+                {{ form.message }} 
+        </div>
+        <div class="mt-8">
+            <button
+                class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:bg-indigo-700"
+                type="submit"
+            >
+                Send Message
+            </button>
+        </div>
+    </form>
+</div>
+ 
+
 
 </main>
 
+ 
 
+<footer class="text-gray-600 body-font" data-aos="zoom-in"  data-aos-once="true">
+  <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
+    <a href="{% url 'Onboarding:Home' %}" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
+      <img src="{% static 'Digital_World__1_-removebg-preview.png' %}">
+    </a>
+    <p class="text-sm text-gray-200 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© Copyright Crest Alpha Trade 2023 . All right reserved.
+    </p>
+    <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
+      <a href="mailto:crestalphatrade.com@gmail.com" class="mt-2 text-sm text-gray-200">crestalphatrade.com@gmail.com</a>
+    </span>
+  </div>
+</footer>
+
+<!--Popup -->
+<div class="btn-bottom fixed bottom-4 right-4">
+  <h1 id="popupMessage" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition ease-in-out duration-300 z-[1000000000000000000]"></h1>
+</div>
+
+<script>
+     function togglePopup() {
+    // Function to display the popup message
+        // Define arrays for names, countries, and prices
+        var names = ["Bob", "John", "Jerry", "Henry", "Ashley", "Micheal", "Emily", "Jane", "Cherry", "David", "Samuel"];
+        var countries = ["Netherlands", "USA", "Switzerland", "Canada", "United Kingdom", "Slovakia", "Sweden", "UAE", "Mexico", "South Africa", "Italy", "Spain", "France", "Germany"];
+        var prices = ["100$", "1000$", "1500$", "2000$", "500$", "250$", "300$", "1200$", "700$", "350$"];
+
+        // Generate random values for name, country, and price
+        var name = names[Math.floor(Math.random() * names.length)];
+        var country = countries[Math.floor(Math.random() * countries.length)];
+        var price = prices[Math.floor(Math.random() * prices.length)];
+
+        // Construct the popup message
+        var popupMessage = name + " from " + country + " just deposited " + price;
+
+      // Function to display or hide the popup message
+   
+            // Get the h1 element by its ID
+            var popupElement = document.getElementById("popupMessage");
+
+            // Toggle the visibility of the popup message
+            if (popupElement.style.display === "none") {
+                popupElement.style.display = "block";
+            } else {
+                popupElement.style.display = "none";
+            }
+        }
+
+        // Call the togglePopup function every 10000 milliseconds (10 seconds)
+        setInterval(togglePopup, 10000);
+        togglePopup()
+</script>
+
+
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 2000,
+    once: true,
+  });
+</script>
 
 
 <script>

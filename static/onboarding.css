@@ -9,6 +9,10 @@ Light Cyan (#E0FFFF): Light cyan can provide a cool and refreshing contrast agai
 
 Pale Orange (#FFE4B2): Another warm option, pale orange, can add a bit of vibrancy to the text while still maintaining readability.
 */
+body {
+  scroll-behavior: smooth;
+}
+
 
 .scroller {
     max-width: 2000px;
