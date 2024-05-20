@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from .models import ContactFormSubmision , Verification , Administration , Profile
-from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm 
+from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -12,7 +12,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate , login , logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required  
 import random
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -131,6 +131,7 @@ def dashboard(request):
     return render(request , 'dashboard.html')
 
 @login_required(login_url='Onboarding:Login')
+
 def Trade(request):
     # Retrieve the username of the logged-in user
     username = request.user.username
@@ -185,8 +186,88 @@ def RegVerify(request , verification_code , user):
             return render(request , 'reg_verification.html' , context)
 
 def Transaction(request):
-    return render(request , 'transaction.html')
+    if request.method == 'POST':
+        form = TransactionForm(request.POST)
+        if form.is_valid():
+           transact = form.save()
+           wallet_address = form.cleaned_data['Wallet_Address']
+           amount = form.cleaned_data['Amount']
+           account = form.cleaned_data['Select_Assets']
+            # Redirect to a success page or do something else
+           return redirect('Onboarding:TransactionPending' , amount=amount , wallet_address=wallet_address , account=account)
+    else:
+        form = TransactionForm()
+    return render(request, 'transaction.html', {'form': form})
 
+def TransactionPending(request, amount , wallet_address , account):
+    username = request.user.username
+    email = request.user.email
+    subject = 'Transaction Pending '
+    subject2 = f'{username} just made a withdrawal'
+
+    # Render HTML email template
+    html_message = render_to_string('pending_email.html', {'username': username})
+    plain_message = strip_tags(html_message)
+
+    second_html_message = render_to_string('admin_pending_email.html' , {'username': username ,  'email': email , 'amount': amount , 'wallet_address': wallet_address , 'account': account})
+    admin_plain_message = strip_tags(second_html_message)
+        # Strips HTML tags to create plaintext version
+
+    # Send HTML email
+    configured_email = settings.EMAIL_HOST_USER
+    receiver = [email]
+    admin = ['crestalphatrade.com@gmail.com']
+    email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
+    admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
+    email.attach_alternative(html_message, "text/html")
+    admin_email.attach_alternative(second_html_message , 'text/html')
+    email.send(fail_silently=False)
+    admin_email.send(fail_silently=False)
+
+    context = {'user': username}
+    return render(request , 'transaction_pending.html', context)
+
+def TransactionSuccess(request):
+    username = request.user.username
+    email = request.user.email
+    subject = 'Transaction Successful '
+
+    # Render HTML email template
+    html_message = render_to_string('transaction_success_email.html', {'username': username})
+    plain_message = strip_tags(html_message)
+        # Strips HTML tags to create plaintext version
+
+    # Send HTML email
+    configured_email = settings.EMAIL_HOST_USER
+    receiver = [email]
+    email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
+    email.attach_alternative(html_message, "text/html")
+    email.send(fail_silently=False)
+
+    context = {'user': username}
+    return render(request , 'transaction_success.html')
+
+@login_required
+def SettingsInfo(request):
+    user = request.user
+    email = request.user.email
+    try:
+        profile = user.profile
+    except Profile.DoesNotExist:
+        profile = None
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            # user = User.objects.get(username=request.user)
+            # email = user.email
+            profile = form.save(commit=False)
+            profile.user = user
+            profile.save()
+    else:
+        form = ProfileForm(instance=profile)
+
+    return render(request, 'settings_info.html', {'form': form})
 # def Admin(request):
 #     if request.method == 'POST':
 #         form = AdministrationForm(request.POST)
@@ -208,14 +289,27 @@ def Transaction(request):
 
 
 
+@login_required
 def AdminDashboard(request):
     users = User.objects.all()
     context = {'users': users}
-    return render(request , 'admin_dash.html' , context)
+    return render(request, 'admin_dash.html', context)
 
-# def user_detail(request, user_id):
-#     user = get_object_or_404(User, pk=user_id)
-#     return render(request, 'user_detail.html', {'user': user})
+
+# views.py
+@login_required
+def edit_user(request, user_id):
+    user = get_object_or_404(User, pk=user_id)
+    profile = user.profile
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=profile)
+        if form.is_valid():
+            form.save()
+            return redirect('Onboarding:AdminDashboard')
+    else:
+        form = ProfileForm(instance=profile)
+    return render(request, 'edit_user_profile.html', {'form': form, 'user': user})
+
 
 # def edit_user_profile(request, user_id):
 #     user = get_object_or_404(User, pk=user_id)
@@ -234,3 +328,6 @@ def my_view(request):
     age = profile.age
     # Use the profile information as needed in your view logic
     return render(request, 'my_view.html', {'profile': profile})
+
+
+    

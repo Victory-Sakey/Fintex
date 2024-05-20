@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Withdrawal Pending!⏳ </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-gray-800 to-blue-900 scroll-smooth container mx-auto">
+    <!--
+  This example requires updating your template:
+
+  ```
+  <html class="h-full">
+  <body class="h-full">
+  ```
+-->
+<main class="grid min-h-full place-items-center py-12 sm:py-12 lg:px-10 px-5  mt-16">
+    <div class="text-center">
+        <div class="img" style="align-items: center; justify-content: center; display: flex;">
+            <img src="{% static '67-671931_time-png-transparent-png-removebg-preview.png' %}?v=1" alt="" style="align-items: center; justify-content: center; display: flex; width: 300px;">
+        </div>
+
+      <h1 class="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">Withdrawal Pending...</h1>
+      <p class="mt-6 text-base leading-7 text-blue-100 " style="font-size: 20px; padding-left: 50px; padding-right: 50px;">We are processing your withdrawal, {{ user }}. Kindly wait patiently and ensure you don't leave this page.</p>
+      <!--<div class="mt-10 flex items-center justify-center gap-x-6">
+        <a href="{% url 'Onboarding:dashboard' %}" class="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Go back to Dashboard</a>
+        <a href="{% url 'Onboarding:LogoutUser' %}" class="text-sm font-semibold text-white">Log Out<span aria-hidden="true">&rarr;</span></a>
+      </div>-->
+    </div>
+  </main>
+
+  <script type="text/javascript">
+    // Redirect to next view after 1 minute (60000 milliseconds)
+    setTimeout(function(){
+        window.location.href = "{% url 'Onboarding:TransactionSuccess' %}";
+    }, 60000);
+</script>
+  
+</body>
+</html>

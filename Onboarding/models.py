@@ -20,15 +20,24 @@ class Administration(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     # Add your custom fields here
-    age = models.IntegerField(null=True, blank=True)
+    tel = models.IntegerField(null=True, blank=True)
+    country = models.CharField(max_length=100 , null=True)
+    bitcoin_address = models.CharField(max_length=100 , null=True)
+    etherum_address = models.CharField(max_length=100 , null=True)
+    bonus = models.IntegerField(default=0)
+    profit = models.IntegerField(default=0)
+    total = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.user.username
 
 
 
 class Transactions(models.Model):
     # Define choices for Balance_Type field
-    TOTAL_BALANCE = 'Total balance ($0.00)'
+    TOTAL_BALANCE = 'Total balance'
     BALANCE_CHOICES = [
-        (TOTAL_BALANCE, 'Total balance ($0.00)'),
+        (TOTAL_BALANCE, 'Total balance'),
     ]
 
     # Define choices for Withdraw_Method field
@@ -42,9 +51,9 @@ class Transactions(models.Model):
     # Define fields with choices
     Select_Balance_Type = models.CharField(max_length=50, choices=BALANCE_CHOICES)
     Select_Assets = models.CharField(max_length=50, choices=WITHDRAW_METHOD_CHOICES)
+    Wallet_Address = models.CharField(max_length=50, null=True)
+    Amount = models.IntegerField(null=True)
 
-    def __str__(self):
-        return f"Transaction {self.pk}"
 
 # class UserProfile(models.Model):
 #     user = models.OneToOneField(User, on_delete=models.CASCADE)

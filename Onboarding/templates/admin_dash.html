@@ -1,127 +1,60 @@
 {% load static %}
+<!-- templates/admin_dash.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Crest Alpha Trade</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <title>Admin Dashboard</title>
     <style>
-      .main-content {
-          padding-left: 0; /* Adjusted to 0 for responsiveness */
-      }
-
-      @media (min-width: 1024px) {
-          .main-content {
-              padding-left: 320px;
-          }
-          .sidebar {
-              left: 0; /* Adjusted to 0 for responsiveness */
-          }
-}
-
-  </style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-gray-800 to-blue-900 scroll-smooth container mx-auto">
-    <header class="md:bg-transparent">
-        <!-- Header content here -->
-    </header>
-    
-    <main class="main-content">
-        <section id="hero" data-aos="fade-up" data-aos-once="true">
-           <div class="title lg:flex lg:justify-between container p-5" style="border-bottom: 1px solid gray;">
-            <div class="username">
-                <h1 class="text-white lg:text-left text-right md:text-3xl  font-semibold font-sans text-2xl">Hi Admin👋,</h1>
-               </div>
-           </div>
-        </section>
-        <section id="bill">
-          <div class="bill container">
+<body class="bg-gradient-to-r from-gray-800  to-blue-900 text-white container mx-auto">
+    <h1 class="text-3xl pt-4">Admin Dashboard</h1>
+    <table>
+        <thead>
+            <tr class="text-gray-950">
+                <th>Username</th>
+                <th>Email</th>
+                <th>Telephone</th>
+                <th>Country</th>
+                <th>Bitcoin Address</th>
+                <th>Ethereum Address</th>
+                <th>Bonus</th>
+                <th>Profit</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
             {% for user in users %}
-            <li><a href="{% url 'Onboarding:user_detail' user.id %}">{{ user.username }}</a></li>
-            <li><a href="">{{ user.email }}</a></li>
-        {% endfor %}
-        </section>
-        
-</main>
-    <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
-        <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
-    </span>
-
-    <!-- Sidebar HTML -->
-    <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000 p-5 w-[300px] md:w-[300px]  text-center bg-gray-900 shadow h-screen">
-        <!-- Sidebar content here -->
-        <div class="text-gray-100 text-xl">
-            <div class="p-2.5 mt-1 flex items-center rounded-md ">
-              <img src="{% static 'Digital_World__1_-removebg-preview.png' %}" alt="Your Company">
-              <i class="bi bi-x  cursor-pointer lg:hidden" onclick="Openbar()"></i>
-            </div>
-        
-      
-            <div>
-              <a href="{% url 'Onboarding:dashboard' %}"> 
-              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  bg-blue-600">
-                <i class="bi bi-house-door-fill"></i>
-              <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
-              </div></a>
-              <a href="{% url 'Onboarding:Transaction' %}"><div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-                <img class="w-[25px]" src="{% static 'icons8-transaction-50.png' %}" alt="">
-                  <span class="text-[15px] ml-4 text-gray-200">Transaction</span>
-                </div></a>
-              <hr class="my-4 text-gray-600">
-              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-                <img class="w-[25px]" src="{% static 'icons8-history-50.png' %}" alt="">
-                <span class="text-[15px] ml-4 text-gray-200">History</span>
-              </div>
-      
-              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-                <img class="w-[25px]" src="{% static 'icons8-settings-50.png' %}" alt="">
-                <div class="flex justify-between w-full items-center" onclick="dropDown()">
-                  <span class="text-[15px] ml-4 text-gray-200">Settings</span>
-                  <span class="text-sm rotate-180" id="arrow">
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </div>
-              </div>
-              <div class=" leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto" id="submenu">
-                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Personal Data</h1>
-                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Security</h1>
-                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Account</h1>
-              </div>
-              <a href="{% url 'Onboarding:LogoutUser' %}"><div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-                <i class="bi bi-box-arrow-in-right"></i>
-             <span class="text-[15px] ml-4   text-gray-200">Logout</span>
-              </div></a>
-      
-            </div>
-          </div>
-    </div>
-    <script>
-        function dropDown() {
-          document.querySelector('#submenu').classList.toggle('hidden')
-          document.querySelector('#arrow').classList.toggle('rotate-0')
-        }
-        dropDown()
-    
-        function Openbar() {
-          document.querySelector('.sidebar').classList.toggle('left-[-300px]')
-        }
-    </script>
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.profile.tel }}</td>
+                <td>{{ user.profile.country }}</td>
+                <td>{{ user.profile.bitcoin_address }}</td>
+                <td>{{ user.profile.etherum_address }}</td>
+                <td>{{ user.profile.bonus }}</td>
+                <td>{{ user.profile.profit }}</td>
+                <td>{{ user.profile.total }}</td>
+                <td><a href="{% url 'Onboarding:edit_user' user.id %}">Edit</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>
-
-<!--{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hello {{username }}</h1>
-    <a href="{% url 'Onboarding:LogoutUser' %}">Logout</a>
-</body>
-</html>-->

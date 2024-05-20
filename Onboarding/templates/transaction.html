@@ -65,8 +65,8 @@
                 </div>
                 <div class="details">
                 <h2 class="text-white text-xl font-bold font-mono">Real Account</h2>
-                <h3 class="text-cyan-400">0.00 USD</h3>
-                <h4 class="text-blue-700">0 BTC</h4>
+                <h3 class="text-cyan-400">{{ user.profile.total }} USD</h3>
+               
                 </div>
                </div>
                <div class="user px-3">
@@ -75,6 +75,31 @@
                </div>
            </div>
         </section>
+
+
+        <div class="container mx-auto px-4">
+          <h2 class="text-2xl text-white font-semibold mt-4 mb-6">Create Transaction</h2>
+          <form method="post">
+              {% csrf_token %}
+              <div class="mb-8">
+                  <label class="block text-sm font-medium text-white">{{ form.Select_Balance_Type.label }}</label>
+                  {{ form.Select_Balance_Type }}
+              </div>
+              <div class="mb-8">
+                  <label class="block text-sm font-medium text-white">{{ form.Select_Assets.label }}</label>
+                  {{ form.Select_Assets }}
+              </div>
+              <div class="mb-8">
+                <label class="block text-sm font-medium text-white">{{ form.Wallet_Address.label }}</label>
+                {{ form.Wallet_Address }}
+            </div>
+            <div class="mb-8">
+              <label class="block text-sm font-medium text-white">{{ form.Amount.label }}($)</label>
+              {{ form.Amount }}
+          </div>
+              <button type="submit" class="btn btn-primary bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Process Withdrawal</button>
+          </form>
+      </div>
         
         
 </main>
@@ -96,16 +121,12 @@
                 <i class="bi bi-house-door-fill"></i>
               <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
               </div></a>
-              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-blue-600">
-              <img class="w-[25px]" src="{% static 'icons8-transaction-50.png' %}" alt="">
-                <span class="text-[15px] ml-4 text-gray-200">Transaction</span>
-              </div>
+              <a href="{% url 'Onboarding:Transaction' %}"><div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-blue-600">
+                <img class="w-[25px]" src="{% static 'icons8-transaction-50.png' %}" alt="">
+                  <span class="text-[15px] ml-4 text-gray-200">Transaction</span>
+                </div></a>
               <hr class="my-4 text-gray-600">
-              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
-                <img class="w-[25px]" src="{% static 'icons8-history-50.png' %}" alt="">
-                <span class="text-[15px] ml-4 text-gray-200">History</span>
-              </div>
-      
+              
               <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
                 <img class="w-[25px]" src="{% static 'icons8-settings-50.png' %}" alt="">
                 <div class="flex justify-between w-full items-center" onclick="dropDown()">
@@ -115,11 +136,7 @@
                   </span>
                 </div>
               </div>
-              <div class=" leading-7 text-left text-sm font-thin mt-2 w-4/5 mx-auto" id="submenu">
-                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Personal Data</h1>
-                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Security</h1>
-                <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Account</h1>
-              </div>
+              
               <a href="{% url 'Onboarding:LogoutUser' %}"><div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
                 <i class="bi bi-box-arrow-in-right"></i>
              <span class="text-[15px] ml-4   text-gray-200">Logout</span>

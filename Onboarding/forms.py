@@ -72,4 +72,37 @@ class AdministrationForm(forms.ModelForm):
 class TransactionForm(forms.ModelForm):
     class Meta:
         model = Transactions
-        fields = ['Select_Balance_Type', 'Select_Assets']
+        fields = ['Select_Balance_Type', 'Select_Assets' , 'Wallet_Address' , 'Amount']
+
+        
+    def __init__(self, *args, **kwargs):
+        super(TransactionForm, self).__init__(*args, **kwargs)
+        self.fields['Select_Balance_Type'].label = None
+        self.fields['Select_Assets'].label = None
+        self.fields['Select_Assets'].choices = [('', 'Select Withdrawal Method')] + list(self.fields['Select_Assets'].choices)
+
+        for field_name, field in self.fields.items():
+            field.widget.attrs.update({
+                'class': 'form-select mt-1 block w-full p-3 outline-indigo-300 font-bold text-gray-900 rounded-[30px]'
+            })
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['tel' , 'country' , 'bitcoin_address' , 'etherum_address' , 'bonus' , 'profit' , 'total']
+
+        labels = ' '
+        widgets = {
+            'tel': forms.NumberInput(attrs={
+                'class': 'block w-full rounded-md p-2 border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            }),
+            'country': forms.TextInput(attrs={
+                'class': 'block w-full rounded-md p-2 border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            }),
+            'etherum_address': forms.TextInput(attrs={
+                'class': 'block w-full rounded-md p-2 border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            }),
+            'bitcoin_address': forms.TextInput(attrs={
+                'class': 'block w-full rounded-md p-2 border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
+            })
+        }

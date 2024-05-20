@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, p {
+            margin-bottom: 20px;
+        }
+        .signature {
+            margin-top: 20px;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hi {{ username }},</h1>
+
+        <p>We are pleased to inform you that your recent transaction on Crest Alpha Trade has been successfully completed.</p>
+
+
+        <p>If you have any questions , do not hesitate to contact our support team at <a href="mailto:crestalphatrade.com@gmail.com">crestalphatrade.com@gmail.com</a>.</p>
+
+        
+        <p>Thank you for using Crest Alpha Trade.</p>
+
+        <p class="signature">Best regards,<br>Crest Alpha Trade<br><a href="https://crestalphatrade.com">crestalphatrade.com</a></p>
+    </div>
+</body>
+</html>

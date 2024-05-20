@@ -1,11 +1,11 @@
+<!-- templates/edit_user.html -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Edit User Profile</title>
 </head>
 <body>
-    <h1>Edit User Profile</h1>
+    <h1>Edit Profile for {{ user.username }}</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
