@@ -189,7 +189,13 @@ def Transaction(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
         if form.is_valid():
-           transact = form.save()
+           transaction = form.save(commit=False)
+           transaction.user = request.user  # Assuming you want to link the transaction to the user
+           transaction.save()
+            # Deduct the transaction amount from the user's profit
+           profile = request.user.profile
+           profile.total -= transaction.Amount
+           profile.save()
            wallet_address = form.cleaned_data['Wallet_Address']
            amount = form.cleaned_data['Amount']
            account = form.cleaned_data['Select_Assets']
@@ -261,6 +267,7 @@ def SettingsInfo(request):
         if form.is_valid():
             # user = User.objects.get(username=request.user)
             # email = user.email
+            form.save()
             profile = form.save(commit=False)
             profile.user = user
             profile.save()
@@ -301,6 +308,7 @@ def AdminDashboard(request):
 def edit_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     profile = user.profile
+
     if request.method == 'POST':
         form = ProfileForm(request.POST, instance=profile)
         if form.is_valid():

@@ -22,7 +22,7 @@ class Profile(models.Model):
     # Add your custom fields here
     tel = models.IntegerField(null=True, blank=True)
     country = models.CharField(max_length=100 , null=True)
-    bitcoin_address = models.CharField(max_length=100 , null=True)
+    bitcoin_address = models.CharField  (max_length=100 , null=True)
     etherum_address = models.CharField(max_length=100 , null=True)
     bonus = models.IntegerField(default=0)
     profit = models.IntegerField(default=0)
@@ -35,6 +35,7 @@ class Profile(models.Model):
 
 class Transactions(models.Model):
     # Define choices for Balance_Type field
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions' , null=True)  # Add this line
     TOTAL_BALANCE = 'Total balance'
     BALANCE_CHOICES = [
         (TOTAL_BALANCE, 'Total balance'),
@@ -53,6 +54,9 @@ class Transactions(models.Model):
     Select_Assets = models.CharField(max_length=50, choices=WITHDRAW_METHOD_CHOICES)
     Wallet_Address = models.CharField(max_length=50, null=True)
     Amount = models.IntegerField(null=True)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.Select_Assets} - {self.Amount}"
 
 
 # class UserProfile(models.Model):

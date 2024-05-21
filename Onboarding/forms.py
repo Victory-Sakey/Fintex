@@ -90,7 +90,6 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['tel' , 'country' , 'bitcoin_address' , 'etherum_address' , 'bonus' , 'profit' , 'total']
-
         labels = ' '
         widgets = {
             'tel': forms.NumberInput(attrs={
@@ -106,3 +105,7 @@ class ProfileForm(forms.ModelForm):
                 'class': 'block w-full rounded-md p-2 border-0 py-1.5 text-gray-900 shadow-sm ring-1 outline-none ring-inset ring-gray-300 font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6'
             })
         }
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.required = False  # Ensure all fields are optional
