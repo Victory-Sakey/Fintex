@@ -304,7 +304,7 @@ def AdminDashboard(request):
 
 
 # views.py
-@login_required
+
 def edit_user(request, user_id):
     user = get_object_or_404(User, pk=user_id)
     profile = user.profile
