@@ -17,8 +17,8 @@ urlpatterns = [
     path('dashboard/settings-info' , views.SettingsInfo , name='SettingsInfo'),
     path('crestadmin/dashboard' , views.AdminDashboard , name='AdminDashboard'),
     path('edit_user/<int:user_id>/', views.edit_user, name='edit_user'),
-    path('my_view' , views.my_view , name='my_view')
+    path('my_view' , views.my_view , name='my_view'),
     # path('users/<int:user_id>/', views.user_detail, name='user_detail'),
-    
+    path('translate' , views.translate_view , name='translate')
     # path('crestadmin' , views.Admin , name='Administration'),
 ]

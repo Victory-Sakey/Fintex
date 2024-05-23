@@ -1,0 +1,22 @@
+<!-- translateapp/templates/translate.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Translate Text</title>
+</head>
+<body>
+    <h1>Translate Text</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="text">Text:</label>
+        <textarea name="text" id="text" rows="4" cols="50"></textarea><br>
+        <label for="target_language">Target Language (e.g., 'es' for Spanish):</label>
+        <input type="text" name="target_language" id="target_language"><br>
+        <input type="submit" value="Translate">
+    </form>
+    {% if translated_text %}
+    <h2>Translated Text:</h2>
+    <p>{{ translated_text }}</p>
+    {% endif %}
+</body>
+</html>

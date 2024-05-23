@@ -15,6 +15,7 @@ from django.contrib.auth import authenticate , login , logout
 from django.contrib.auth.decorators import login_required  
 import random
 from django.core.exceptions import ObjectDoesNotExist
+from .translation_service import libre_translate
 
 
 # Create your views here.
@@ -296,7 +297,6 @@ def SettingsInfo(request):
 
 
 
-@login_required
 def AdminDashboard(request):
     users = User.objects.all()
     context = {'users': users}
@@ -327,6 +327,14 @@ def edit_user(request, user_id):
 #         form.save()
 #         return redirect('Onboarding:user_detail', user_id=user_id)
 #     return render(request, 'edit_user_profile.html', {'form': form})
+
+def translate_view(request):
+    translated_text = ""
+    if request.method == "POST":
+        text = request.POST.get("text")
+        target_language = request.POST.get("target_language")
+        translated_text = libre_translate(text, target_language)
+    return render(request, "translate.html", {"translated_text": translated_text})
 
 def my_view(request):
     # Assuming 'example' is the username of the user you want to retrieve profile information for

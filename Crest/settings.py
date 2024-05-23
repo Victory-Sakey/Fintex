@@ -20,9 +20,10 @@ EMAIL_USE_TLS = EMAIL_USE_TLS
 EMAIL_BACKEND = EMAIL_BACKEND
 
 
-
+import dj_database_url
 import os
 from pathlib import Path
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -94,6 +95,9 @@ DATABASES = {
     }
 }
 
+DATABASES['default'] = dj_database_url.parse('postgres://crest_alpha_trade_user:uqsaCOYotvoKZf7KdX5S69WTyE0NPPiG@dpg-cp7ccaud3nmc73bp3uu0-a.oregon-postgres.render.com/crest_alpha_trade')
+
+# 
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

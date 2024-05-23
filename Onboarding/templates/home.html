@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crest Alpha Trade 💎  </title>
-    <link rel="stylesheet" href="{% static 'onboarding.css' %}?v=10">
+    <link rel="stylesheet" href="{% static 'onboarding.css' %}?v=11">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FONTS -->
@@ -53,6 +53,7 @@
 </header>
 
 <main>
+
   <section id="hero " data-aos="fade-up"  data-aos-once="true">
     <div class="hero container flex flex-col-reverse md:flex-row items-center justify-center align-middle  w-[92%] md:pt-[100px] lg:pt-[0px] pt-[100px] mx-auto pb-[100px] md:pb-[0px]">
     <div class="hero-text md:ml-[50px] w-full md:text-left text-center">
@@ -292,7 +293,17 @@
     </span>
   </div>
 </footer>
+ 
 
+<div class="translate  fixed bottom-4 left-4 flex justify-end m-3">
+  <div class="bg-indigo-100 px-6 py-6 rounded-[20px] text-white" style="box-shadow: 10px 5px 10px black;" id="google_translate_element"></div>
+</div>
+<script type="text/javascript">
+  function googleTranslateElementInit() {
+      new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+  }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!--Popup -->
 <div class="btn-bottom fixed bottom-4 right-4">
   <h1 id="popupMessage" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition ease-in-out duration-300 z-[1000000000000000000]"></h1>
@@ -351,6 +362,15 @@
 </script>
   
   </html>
+
+  <div id="google_translate_element"></div>
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 
       
 <script src="{% static 'onboarding.js' %}?v=3"></script>
