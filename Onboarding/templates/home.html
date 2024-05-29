@@ -5,8 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crest Alpha Trade 💎  </title>
-    <link rel="stylesheet" href="{% static 'onboarding.css' %}?v=11">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
+    <title>Crest Alpha Trade</title>
+    <link rel="stylesheet" href="{% static 'onboarding.css' %}?v=10">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FONTS -->
@@ -53,11 +57,14 @@
 </header>
 
 <main>
-
   <section id="hero " data-aos="fade-up"  data-aos-once="true">
     <div class="hero container flex flex-col-reverse md:flex-row items-center justify-center align-middle  w-[92%] md:pt-[100px] lg:pt-[0px] pt-[100px] mx-auto pb-[100px] md:pb-[0px]">
     <div class="hero-text md:ml-[50px] w-full md:text-left text-center">
-        <h1 class="bg-blue-600  rounded  p-2  w-[250px] text-white mb-2 text-left hidden md:block" >Welcome to Crest Alpha Trade</h1>
+    
+
+
+
+      <h1 class="bg-blue-600  rounded  p-2  w-[250px] text-white mb-2 text-left hidden md:block" >Welcome to Crest Alpha Trade</h1>
       <h2 class=" font-sans font-bold text-4xl  md:text-4xl lg:text-5xl text-white w-full md:w-[100%] lg:w-[90%] pb-4  " >The Future of Financing is Cryptocurrency.</h2>
       <p class="text-[#CCCCCC] md:text-[15px] lg:text-[18px] mt-3 md:w-[90%] lg:w-[80%] " >Trade foreign currencies on the largest and most liquid market in the world.</p>
       <div class="btn flex md:justify-start justify-center">
@@ -293,10 +300,15 @@
     </span>
   </div>
 </footer>
- 
 
-<div class="translate  fixed bottom-4 left-4 flex justify-end m-3">
-  <div class="bg-indigo-100 px-6 py-6 rounded-[20px] text-white" style="box-shadow: 10px 5px 10px black;" id="google_translate_element"></div>
+
+<!--Popup -->
+<div class="btn-bottom fixed bottom-4 right-4 md:w-[350px] w-3/4">
+  <h1 id="popupMessage" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-[20px] md:w-[350px] w-[100%] transition ease-in-out duration-300 z-[10000000000000000000000000000000000000000000]"></h1>
+</div>
+
+<div class="translate flex justify-end mb-[130px]  md:mb-0 btn-bottom fixed bottom-4 left-4 z-[1]">
+  <div class="bg-indigo-300 w-[100%]  px-4 py-4 rounded-[20px] text-white" id="google_translate_element"></div>
 </div>
 <script type="text/javascript">
   function googleTranslateElementInit() {
@@ -304,10 +316,6 @@
   }
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<!--Popup -->
-<div class="btn-bottom fixed bottom-4 right-4">
-  <h1 id="popupMessage" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition ease-in-out duration-300 z-[1000000000000000000]"></h1>
-</div>
 
 <script>
      function togglePopup() {
@@ -315,7 +323,7 @@
         // Define arrays for names, countries, and prices
         var names = ["Bob", "John", "Jerry", "Henry", "Ashley", "Micheal", "Emily", "Jane", "Cherry", "David", "Samuel"];
         var countries = ["Netherlands", "USA", "Switzerland", "Canada", "United Kingdom", "Slovakia", "Sweden", "UAE", "Mexico", "South Africa", "Italy", "Spain", "France", "Germany"];
-        var prices = ["100$", "1000$", "1500$", "2000$", "500$", "250$", "300$", "1200$", "700$", "350$"];
+        var prices = ["$100", "$1000", "$1500", "$2000", "$500", "$250", "$300", "$1200", "$700", "$350"];
 
         // Generate random values for name, country, and price
         var name = names[Math.floor(Math.random() * names.length)];
@@ -357,22 +365,13 @@
     const navLinks = document.querySelector('.nav-links')
     function onToggleMenu(e){
         e.name = e.name === 'menu' ? 'close' : 'menu'
-        navLinks.classList.toggle('top-[9%]')
+        navLinks.classList.toggle('top-[1%]')
     }
 </script>
   
   </html>
 
-  <div id="google_translate_element"></div>
-<script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-    }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
-
       
-<script src="{% static 'onboarding.js' %}?v=3"></script>
+<script src="{% static 'onboarding.js' %}?v=4"></script>
       
 </html>

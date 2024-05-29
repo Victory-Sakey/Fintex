@@ -30,7 +30,7 @@ function displayPopup() {
   // Define arrays for names, countries, and prices
   var names = ["Bob", "John", "Jerry", "Henry", "Ashley", "Micheal", "Emily", "Jane", "Cherry", "David", "Samuel"];
   var countries = ["Netherlands", "USA", "Switzerland", "Canada", "United Kingdom", "Slovakia", "Sweden", "UAE", "Mexico", "South Africa", "Italy", "Spain", "France", "Germany"];
-  var prices = ["100$", "1000$", "1500$", "2000$", "500$", "250$", "300$", "1200$", "700$", "350$"];
+  var prices = ["$100", "$1000", "$1500", "$2000", "$500", "$250", "$300", "$1200", "$700", "$350"];
 
   // Generate random values for name, country, and price
   var name = names[Math.floor(Math.random() * names.length)];
