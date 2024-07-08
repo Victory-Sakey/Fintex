@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
-    <title>Settings | Crest Alpha Trade</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img2/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img2/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img2/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img2/site.webmanifest' %}">
+    <title>Settings | Fintex Ground Trade</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -48,7 +48,7 @@
   }
   </style>
 </head>
-<body class="bg-gradient-to-r from-gray-800 to-blue-900 scroll-smooth container mx-auto">
+<body class="bg-zinc-800 scroll-smooth container mx-auto">
     <header class="md:bg-transparent">
         <!-- Header content here -->
     </header>
@@ -57,19 +57,19 @@
         <section id="hero" data-aos="fade-up" data-aos-once="true">
            <div class="title lg:flex lg:justify-between container p-5" style="border-bottom: 1px solid gray;">
             <div class="username">
-                <h1 class="text-white lg:text-left text-right text-2xl  font-semibold font-sans md:text-3xl"> Welcome {{ request.user }} 👋,</h1>
+                <h1 class="text-white lg:text-left text-right text-2xl  font-semibold font-sans md:text-3xl"> <span class="text-green-600">Welcome</span> {{ request.user }} 👋,</h1>
                </div>
               
-                <button class="join bg-white text-blue-700 px-5 md:px-4 lg:px-5  rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-30  text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-blue-700  hidden hover:text-white mt-5 ">Trade Now</button>
+                <button class="join bg-white text-green-700 px-5 md:px-4 lg:px-5  rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-30  text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-green-700  hidden hover:text-white mt-5 ">Trade Now</button>
        
                <div class="account lg:flex">
                <div class="coin px-3 lg:flex flex-row">
                 <div class="img px-3  hidden lg:block ">
-                <img class="bg-white rounded-full hidden lg:block" src="{% static 'icons8-dollar-50.png' %}" alt="">
+                <img class="bg-white rounded-full hidden lg:block" src="{% static 'icons8-dollar-coin-50.png' %}" alt="">
                 </div>
                 <div class="details">
                 <h2 class="text-white text-xl font-bold font-mono">Real Account</h2>
-                <h3 class="text-cyan-400">{{ user.profile.total }} USD</h3>
+                <h3 class="text-lime-400">{{ user.profile.total }} USD</h3>
                 </div>
                </div>
                <div class="user px-3">
@@ -83,14 +83,14 @@
                 <form method="POST" action="">
                     {% csrf_token %}
                     <!--{{ form }}-->
-                    <div class="border-b border-gray-900/10 pb-12">
+                    <div class="border-b border-green-900/10 pb-12">
                         <h2 class=" text-2xl font-semibold leading-7 text-white">Personal Information</h2>
                   
                         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                           <div class="sm:col-span-3">
                             <label for="first-name" class="block text-sm font-medium leading-6 text-white">Username</label>
                             <div class="mt-2">
-                              <div type="text" name="username" id="username" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-gray-900 p-2 shadow-sm ring-1 outline-none  ring-inset ring-gray-300 font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-inset bg-white focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ request.user }}</div>
+                              <div type="text" name="username" id="username" autocomplete="given-name" class="block w-full rounded-md border-0 py-1.5 text-green-900 p-2 shadow-sm ring-1 outline-none  ring-inset ring-gray-300 font-bold placeholder:text-gray-400 focus:ring-2 focus:ring-inset bg-white focus:ring-green-600 sm:text-sm sm:leading-6">{{ request.user }}</div>
                             </div>
                           </div>
                   
@@ -104,7 +104,7 @@
                           <div class="sm:col-span-4">
                             <label for="email" class="block text-sm font-medium leading-6 text-white">Email address</label>
                             <div class="mt-2">
-                              <div id="email" name="email" type="email" autocomplete="email" class="block w-full p-2 rounded-md border-0 py-1.5 text-gray-900 font-bold shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 outline-none bg-white focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">{{ request.user.email }}</div>
+                              <div id="email" name="email" type="email" autocomplete="email" class="block w-full p-2 rounded-md border-0 py-1.5 text-green-900 font-bold shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 outline-none bg-white focus:ring-inset focus:ring-green-600 sm:text-sm sm:leading-6">{{ request.user.email }}</div>
                             </div>
                           </div>
                   
@@ -136,7 +136,7 @@
                       </div>
                       <div class="items-center justify-start gap-x-6 pb-5">
 
-                        <button type="submit" class="rounded-md bg-indigo-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+                        <button type="submit" class="rounded-md bg-green-600 px-8 py-3 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Save</button>
                       </div>
                 </form>
             </div>
@@ -144,30 +144,30 @@
         
 </main>
     <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
-        <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
+        <i class="bi bi-filter-left px-2 bg-green-900 rounded-md"></i>
     </span>
 
     <!-- Sidebar HTML -->
-    <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000 p-5 w-[300px] md:w-[300px]  text-center bg-gray-900 shadow h-screen">
+    <div class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-1000 p-5 w-[300px] md:w-[300px]  text-center bg-zinc-900 shadow h-screen">
         <!-- Sidebar content here -->
         <div class="text-gray-100 text-xl">
-            <div class="p-2.5 mt-1 flex items-center rounded-md ">
-              <img src="{% static 'Digital_World__1_-removebg-preview.png' %}" alt="Your Company">
+            <div class="p-2.5 mt-1 justify-around flex items-center rounded-md ">
+              <img src="{% static '1-removebg-preview.png' %}" class="w-[80px]"alt="Your Company">
               <i class="bi bi-x  cursor-pointer lg:hidden" onclick="Openbar()"></i>
             </div>
         <div>
               <a href="{% url 'Onboarding:dashboard' %}"> 
-              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-green-600">
                 <i class="bi bi-house-door-fill"></i>
               <span class="text-[15px] ml-4 text-gray-200">Dashboard</span>
               </div></a>
-              <a href="{% url 'Onboarding:Transaction' %}"><div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600">
+              <a href="{% url 'Onboarding:Transaction' %}"><div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-green-600">
                 <img class="w-[25px]" src="{% static 'icons8-transaction-50.png' %}" alt="">
                   <span class="text-[15px] ml-4 text-gray-200">Transaction</span>
                 </div></a>
               <hr class="my-4 text-gray-600">
               
-              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  bg-blue-600">
+              <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  bg-green-600">
                 <img class="w-[25px]" src="{% static 'icons8-settings-50.png' %}" alt="">
                 <div class="flex justify-between w-full items-center" onclick="dropDown()">
                   <span class="text-[15px] ml-4 text-gray-200">Settings</span>
@@ -180,7 +180,7 @@
                 <a href="{% url 'Onboarding:SettingsInfo' %}"><h1 class="cursor-pointer p-2 bg-gray-700 rounded-md mt-1">Personal Data</h1></a>
                 <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Security</h1>
               </div>
-              <a href="{% url 'Onboarding:LogoutUser' %}"><div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-blue-600">
+              <a href="{% url 'Onboarding:LogoutUser' %}"><div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-green-600">
                 <i class="bi bi-box-arrow-in-right"></i>
              <span class="text-[15px] ml-4   text-gray-200">Logout</span>
               </div></a>

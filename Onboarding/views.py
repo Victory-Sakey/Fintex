@@ -44,7 +44,7 @@ def Home(request):
             # Send HTML email
             configured_email = settings.EMAIL_HOST_USER
             receiver = [person_email]
-            admin = ['crestalphatrade.com@gmail.com']
+            admin = ['fintexgroundtrade@gmail.com']
             email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
             admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
             email.attach_alternative(html_message, "text/html")
@@ -94,7 +94,7 @@ def Register(request):
                 # Send HTML email
                 configured_email = settings.EMAIL_HOST_USER
                 receiver = [user_email]
-                admin = ['crestalphatrade.com@gmail.com']
+                admin = ['fintexgroundtrade@gmail.com']
                 email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
                 admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
                 email.attach_alternative(html_message, "text/html")
@@ -151,7 +151,7 @@ def Trade(request):
     # Send HTML email
     configured_email = settings.EMAIL_HOST_USER
     receiver = [email]
-    admin = ['crestalphatrade.com@gmail.com']
+    admin = ['fintexgroundtrade@gmail.com']
     email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
     admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
     email.attach_alternative(html_message, "text/html")
@@ -195,7 +195,7 @@ def Transaction(request):
            transaction.save()
             # Deduct the transaction amount from the user's profit
            profile = request.user.profile
-           profile.total -= transaction.Amount
+           profile.total += transaction.Amount
            profile.save()
            wallet_address = form.cleaned_data['Wallet_Address']
            amount = form.cleaned_data['Amount']
@@ -223,7 +223,7 @@ def TransactionPending(request, amount , wallet_address , account):
     # Send HTML email
     configured_email = settings.EMAIL_HOST_USER
     receiver = [email]
-    admin = ['crestalphatrade.com@gmail.com']
+    admin = ['fintexgroundtrade@gmail.com']
     email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
     admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
     email.attach_alternative(html_message, "text/html")

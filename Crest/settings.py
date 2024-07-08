@@ -95,7 +95,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgres://crest_alpha_trade_user:uqsaCOYotvoKZf7KdX5S69WTyE0NPPiG@dpg-cp7ccaud3nmc73bp3uu0-a.oregon-postgres.render.com/crest_alpha_trade')
+DATABASES['default'] = dj_database_url.parse('postgresql://fintex_user:DIYBbd7VaVmFufGr85sJXZ6AZ2gZODFC@dpg-cq5bqqeehbks73bmm8qg-a.oregon-postgres.render.com/fintex')
 
 # 
 

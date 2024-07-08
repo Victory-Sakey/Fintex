@@ -5,11 +5,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
-    <title>Crest Alpha Trade</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img2/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img2/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img2/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img2/site.webmanifest' %}">
+    <title>Fintex Ground Trade</title>
     <link rel="stylesheet" href="{% static 'onboarding.css' %}?v=10">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -17,66 +17,123 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    
 </head>
-<body class="bg-gradient-to-r from-gray-800  to-blue-900  scroll-smooth">    
+<body class="scroll-smooth bg-zinc-900">    
   <header class=" md:bg-transparent">
     <nav class="flex justify-between items-center w-[92%]  mx-auto">
         <div>
-       <a href="{% url 'Onboarding:Home' %}"> <img src="{% static 'Digital_World__1_-removebg-preview.png' %}" class="cursor-pointer w-[350px] mt-4"alt=""></a>
+       <a href="{% url 'Onboarding:Home' %}"> <img  src="{% static '1-removebg-preview.png' %}" class="cursor-pointer w-[100px] mt-4"alt=""></a>
         </div>
         <div
-            class="nav-links duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto  w-full flex items-center px-2 mt-6 text-white font-bold bg-blue-900 md:bg-transparent ">
+            class="nav-links duration-500 md:static absolute md:min-h-fit min-h-[60vh] left-0 top-[-100%] md:w-auto  w-full flex items-center px-2 mt-6 text-white font-bold bg-zinc-800 md:bg-transparent ">
             <ul class="flex md:flex-row flex-col md:items-center md:gap-[4vw] gap-8 ">
                 <li>
-                    <a class="text-cyan-400" href="{% url 'Onboarding:Home' %}">Home</a>
+                    <a class="text-lime-400" href="{% url 'Onboarding:Home' %}">Home</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400" href="#about">About</a>
+                    <a class="hover:text-lime-400" href="#about">About</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400" href="#services">Services</a>
+                    <a class="hover:text-lime-400" href="#services">Services</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400" href="#contacts">Contacts</a>
-                </li>
-               
-                <li>
-                    <a class="hover:text-cyan-400 md:hidden block" href="{% url 'Onboarding:Register' %}">Register</a>
+                    <a class="hover:text-lime-400" href="#contacts">Contacts</a>
                 </li>
                 <li>
-                    <a class="hover:text-cyan-400 md:hidden block" href="{% url 'Onboarding:Login' %}">Login</a>
+                  <a class="hover:text-lime-400" href="{% url 'Onboarding:dashboard' %}">Dashboard</a>
+              </li>
+             
+                <li>
+                    <a class="hover:text-lime-400 md:hidden block" href="{% url 'Onboarding:Register' %}">Register</a>
+                </li>
+                <li>
+                    <a class="hover:text-lime-400 md:hidden block" href="{% url 'Onboarding:Login' %}">Login</a>
                 </li>
             </ul>
         </div>
         <div class="flex items-center gap-6">
-          <a class="text-white hidden md:block hover:text-cyan-500 mt-3" href="{% url 'Onboarding:Login' %}">Login</a>
-           <a href="{% url 'Onboarding:Register' %}"><button class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-[#87acec] mt-3 hidden md:block">Register</button></a>
+          <a class="text-white hidden md:block hover:text-lime-500 mt-3" href="{% url 'Onboarding:Login' %}">Login</a>
+           <a href="{% url 'Onboarding:Register' %}"><button class="bg-green-600 text-white px-5 py-2 rounded-full hover:bg-emerald-400 mt-3 hidden md:block">Register</button></a>
             <ion-icon onclick="onToggleMenu(this)" name="menu" class="text-3xl cursor-pointer text-[white] md:hidden"></ion-icon>
         </div>
 </header>
 
 <main>
-  <section id="hero " data-aos="fade-up"  data-aos-once="true">
-    <div class="hero container flex flex-col-reverse md:flex-row items-center justify-center align-middle  w-[92%] md:pt-[100px] lg:pt-[0px] pt-[100px] mx-auto pb-[100px] md:pb-[0px]">
+  <section id="hero" data-aos="fade-up"  data-aos-once="true">
+    <div class="hero container flex flex-col md:flex-row items-center justify-center align-middle mt-[10px] w-[92%]  mx-auto pb-[100px] md:pb-[185px]">
     <div class="hero-text md:ml-[50px] w-full md:text-left text-center">
-    
-
-
-
-      <h1 class="bg-blue-600  rounded  p-2  w-[250px] text-white mb-2 text-left hidden md:block" >Welcome to Crest Alpha Trade</h1>
-      <h2 class=" font-sans font-bold text-4xl  md:text-4xl lg:text-5xl text-white w-full md:w-[100%] lg:w-[90%] pb-4  " >The Future of Financing is Cryptocurrency.</h2>
+      <h1 class="bg-green-600  rounded mt-[50px] md:mt-[100px] w-[250px] text-white text-center hidden md:block" >Welcome to Fintex Ground Trade</h1>
+      <h2 class=" font-sans font-bold text-4xl mt-[50px] md:mt-[0px] md:text-4xl lg:text-5xl text-white w-full md:w-[100%] lg:w-[90%] pt-4 pb-4  " >The Future of <span>Financing</span> is <span class="text-green-600">Cryptocurrency</span></h2>
       <p class="text-[#CCCCCC] md:text-[15px] lg:text-[18px] mt-3 md:w-[90%] lg:w-[80%] " >Trade foreign currencies on the largest and most liquid market in the world.</p>
       <div class="btn flex md:justify-start justify-center">
-        <a href="{% url 'Onboarding:Register' %}"><button class="started bg-blue-700 text-white px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-white hover:text-blue-700 mt-5 mr-4 ">Get Started</button></a>
-        <a href="{% url 'Onboarding:Login' %}"><button class="join bg-white text-blue-700 px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-blue-700 hover:text-white mt-5 ">Start Trading</button></a>
+        <a href="{% url 'Onboarding:Register' %}">
+          <button class="started bg-green-700 text-white px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-white hover:text-green-700 mt-5 mr-4 ">Get Started</button>
+        </a>
+        <a href="{% url 'Onboarding:Login' %}">
+          <button class="join bg-white text-green-700 px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold hover:bg-green-700 hover:text-white mt-5 ">Start Trading</button>
+        </a>
+        
       </div>
     </div>
-    <div class="hero-img w-[500px] md:w-[1100px] hidden md:block lg:w-full">
-      <img src="{% static 'bitcoin-img.png' %}" alt="">
+    <div class="hero-img md:w-[1100px] lg:w-full mt-[50px]">
+      <img class="w-[450px]" src="{% static '31756147_2203.i201.078.F.m004.c9.web_3_technology_isometirc-removebg-preview.png' %}" alt="">
     </div>
     </div>
   </section>
+  <!-- TradingView Widget BEGIN -->
+<div data-aos="fade-up"  data-aos-once="true" class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+  {
+    "symbols": [
+      {
+        "description": "",
+        "proName": "TURQUOISE:SHELL"
+      },
+      {
+        "description": "",
+        "proName": "TURQUOISE:BARCL"
+      },
+      {
+        "description": "",
+        "proName": "TURQUOISE:RRL"
+      },
+      {
+        "description": "",
+        "proName": "TURQUOISE:BPL"
+      },
+      {
+        "description": "",
+        "proName": "TURQUOISE:BTL"
+      },
+      {
+        "description": "",
+        "proName": "TURQUOISE:TSCOL"
+      },
+      {
+        "description": "",
+        "proName": "TURQUOISE:BATSL"
+      },
+      {
+        "description": "",
+        "proName": "TURQUOISE:ULVRL"
+      }
+    ],
+    "showSymbolLogo": true,
+    "colorTheme": "light",
+    "isTransparent": false,
+    "displayMode": "regular",
+    "locale": "en"
+  }
+  </script>
+</div>
+              </div>
+<!-- TradingView Widget END -->
 <!--
   <section id="scroller" class="bg-gradient-to-r from-indigo-600 to-pink-500">
     <div class="scroller" data-speed="fast">
@@ -92,127 +149,152 @@
       </div>
   </section>
   -->
-
-  <section id="about" class="bg-white">
-    <div class="about container mx-auto  p-3 md:p-10  lg:flex-row flex-col  flex  justify-center" data-aos="fade-up"  data-aos-once="true">
-      <div class="about-info ml-[0px]  md:ml-8 mt-10">
-        <h1 class="md:text-3xl text-2xl text-blue-700 font-sans font-semibold pb-3">What is Crest Alpha Trade?</h1>
-        <p class="text-gray-700 w-[100%] lg:w-[80%]">Crest Alpha Trade is an award winning Forex and Commodities Broker, providing trading services and facilities to both retail and institutional clients. Through its policy of providing the best possible trading conditions to its clients and allowing both scalpers and traders using expert advisors unrestricted access to its liquidity, Crest Alpha Trade has positioned itself as the forex broker of choice for traders worldwide. 
-          At Crest Alpha Trade, we're dedicated to providing our clients with the most advanced and powerful trading tools in a wide range of markets For traders just starting out or seasoned traders already familiar with derivative trading, we offer the robust MetaTrader 4 and MetaTrader 5 platforms with the advantage of our competitive spreads and first class multi-lingual support. We also allow for flexible trading on a range of Forex and CFDs including Cryptocurrencies, Commodities, Indices and Binary Options through MetaTrader 4 and MetaTrader 5.</p>
-          <button class="started bg-blue-700 flex justify-center text-white px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold mt-5 mr-4 ">Get Started</button>
-        
+<!-- About Section -->
+<section id="about" class="mt-[100px] px-11 pb-16">
+  <div data-aos="fade-up"  data-aos-once="true" class="about container flex flex-col-reverse md:flex-row mx-auto">
+    <div class="about-img">
+      <img src="{% static '30-removebg-preview.png' %}" alt="" class="lg:w-[600px] w-[1000px] md:w-[800px]">
+    </div>
+    <div class="about-body w-full md:w-[100%] lg:w-1/2">
+      <div class="about-title">
+        <h1 class="text-white text-2xl md:text-xl lg:text-3xl font-bold">What is <span class="text-green-600">Fintex</span> Ground Trade?</h1>
       </div>
-      <div class="about-img">
-        <img class="lg:w-[80%]  w-[1000px]" src="{% static '19198921.jpg' %}" alt="">
+      <div class="about-info mt-2">
+        <p class="text-gray-200 md:text-[15px] lg:text-[18px]">
+          Fintex Ground Trade is an award winning Forex and Commodities Broker, providing trading services and facilities to both retail and institutional clients. Through its policy of providing the best possible trading conditions to its clients and allowing both scalpers and traders using expert advisors unrestricted access to its liquidity, Fintex Ground Trade has positioned itself as the forex broker of choice for traders worldwide. At Fintex Ground Trade, we're dedicated to providing our clients with the most advanced and powerful trading tools in a wide range of markets For traders just starting out or seasoned traders already familiar with derivative trading, we offer the robust MetaTrader 4 and MetaTrader 5 platforms with the advantage of our competitive spreads and first class multi-lingual support. We also allow for flexible trading on a range of Forex and CFDs including Cryptocurrencies, Commodities, Indices and Binary Options through MetaTrader 4 and MetaTrader 5.
+        </p>
+        <button class="started bg-green-700 flex justify-center text-white px-5 md:px-4 lg:px-5 py-3 md:py-2 lg:py-3 rounded-[20px] md:rounded-[15px] lg:rounded-[20px] w-40 md:w-30 lg:w-40 text-[15px] md:text-[12px] lg:text-[15px] font-bold mt-5 mr-4 ">Get Started</button>
       </div>
     </div>
-  </section>
-
-
-  
-  <section id="services" class="bg-white pt-10">
-    <div class="container mx-auto" data-aos="fade-up"  data-aos-once="true">
-        <div class="text-center mb-5">
-            <h2 class="font-semibold font-sans text-4xl text-blue-700 text-center">Our Services</h2>
-            <h2 class="font-extrabold text-blue-700">_______________</h2>
-        </div>
-        <div class="row text-gray-700 flex flex-col md:flex-row p-5">
-            <div class="col-lg-4 p-3">
-                <div class="card mb-4">
-                    <img src="{% static 'about_laptop.jpg' %}" class="card-img-top w-[500px]" alt="Service 2">
-                    <div class="card-body bg-blue-700 text-gray-700 p-5">
-                        <h5 class="card-title text-white font-bold text-center"><i class="fas fa-users"></i>Commodities</h5>
-                        <p class="text-center text-white ">Speculate on the prices of high profile commodities such as oil and gold.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 p-3">
-                <div class="card mb-4">
-                    <img src="{% static 'expertise2.jpg' %}" class="card-img-top w-[500px]" alt="Service 1">
-                    <div class="card-body bg-blue-700 p-5">
-                        <h5 class="card-title text-white font-bold text-center"><i class="fas fa-list-alt"></i>Forex</h5>
-                        <p class="card-text text-center text-white">Go long or go short on 25 Forex majors.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 p-3">
-                <div class="card mb-4">
-                    <img src="{% static 'expertise3.jpg' %}" class="card-img-top w-[500px]" alt="Service 3">
-                    <div class="card-body p-2 bg-blue-700">
-                        <h5 class="card-title text-white font-bold text-center"><i class="far fa-clock"></i>Cryptocurrencies</h5>
-                        <p class="card-text text-center text-white">Stay informed with real-time updates on predicted events and outcomes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+  </div>
 </section>
 
 
-<section id="testimonial" class="text-gray-600 body-font relative bg-blue-900 ">
+  
+  
+<style>
+  .title-banner h1 {
+    font-family: "Poppins", sans-serif;
+    font-weight: 700;
+    font-style: normal;
+  }
+</style>
+
+
+<!-- Features Section -->
+<section id="services" class="bg-zinc-800 py-5">
+<div class="features container mx-auto justify-center mt-8">
+   <!-- title banner -->
+<div data-aos="fade-up"  data-aos-once="true" class="title-banner mt-10">
+  <h1 class="lg:text-4xl md:text-3xl text-3xl text-center text-white capitalize">Trade with <span class="text-green-600">no limitations</span></h1>
+ </div>
+    <div class="features-items pt-5 container mx-auto">
+      <div data-aos="fade-up"  data-aos-once="true" class="feature-item pt-6 md:pt-0  px-10 md:px-16 lg:px-28 flex md:flex-row flex-col justify-center items-center align-middle">
+        <div class="feature-item-text md:text-left text-center md:w-[750px]">
+          <h1 class="pb-4 text-white font-bold lg:text-4xl md:text-2xl text-3xl">Forex</h1>
+          <p class="text-gray-200  text-[15px] md:text-[15px] lg:text-[18px] ">Go long or go short on 25 Forex majors. Take advantage of leverage up to 1000x. Fintex Ground Trade offers the world’s most highly traded forex currencies, including USD, GBP, JPY, EUR, and many more.</p>
+        </div>
+        <div class="feature-item-img">
+            <img class="w-[500px]" src="{% static '1209457_9634-removebg-preview.png' %}" alt="">
+        </div>
+      </div>
+      <div data-aos="fade-up"  data-aos-once="true" class="feature-item pt-6 md:pt-0  px-10 md:px-16 lg:px-28 flex md:flex-row-reverse flex-col justify-center items-center align-middle">
+        <div class="featuru5ye-item-text md:text-left text-center md:w-[750px]">
+          <h1 class="pb-4 text-white font-bold lg:text-4xl md:text-2xl text-3xl">Bitcoin Minning</h1>
+          <p class="text-gray-200  text-[15px] md:text-[15px] lg:text-[18px] ">Bitcoin mining is the process of adding transaction records to Bitcoin's public ledger of past transactions or blockchain.Purchase AntMiner S7, AntMiner S9, & Avalon6 and start adding transactions to your Blockchain.</p>
+        </div>
+        <div class="feature-item-img">
+            <img class="w-[500px]" src="{% static '21250116_6424090-removebg-preview.png' %}" alt="">
+        </div>
+      </div>
+      <div data-aos="fade-up"  data-aos-once="true" class="feature-item pt-6 md:pt-0  px-10 md:px-16 lg:px-28 flex md:flex-row flex-col justify-center items-center align-middle">
+        <div class="feature-item-text md:text-left text-center md:w-[750px]">
+          <h1 class="pb-4 text-white font-bold lg:text-4xl md:text-2xl text-3xl">Cryptocurrency Investing </h1>
+          <p class="text-gray-200  text-[15px] md:text-[15px] lg:text-[18px] ">Cryptocurrencies such as Bitcoin are digital currencies can be invested on with a weekly or monthly earning by percentage.</p>
+        </div>
+        <div class="feature-item-img">
+            <img class="w-[500px]" src="{% static '4791198_49242-removebg-preview.png' %}" alt="">
+        </div>
+      </div>
+      <div data-aos="fade-up"  data-aos-once="true" class="feature-item pt-6 md:pt-0  px-10 md:px-16 lg:px-28 flex md:flex-row-reverse flex-col justify-center items-center align-middle">
+        <div class="feature-item-text md:text-left text-center md:w-[750px]">
+          <h1 class="pb-4 text-white font-bold lg:text-4xl md:text-2xl text-3xl">Commodities</h1>
+          <p class="text-gray-200  text-[15px] md:text-[15px] lg:text-[18px] ">Speculate on the prices of high profile commodities such as oil and gold, and profit from their growth.Commodities have been traded throughout history, and have become among the most exciting and profitable markets to trade. Gaining exposure to various commodities can help individuals grow their capital quickly and safely.</p>
+        </div>
+        <div class="feature-item-img">
+            <img class="w-[500px]" src="{% static '6345978_24963-removebg-preview.png' %}" alt="">
+        </div>
+      </div>
+  
+    </div>
+  </div>
+</div>
+</section>
+
+
+<section id="testimonial" class="text-gray-600 body-font relative bg-zinc-900 ">
   <div class="testimonial container px-5 py-24 mx-auto" data-aos="fade-up"  data-aos-once="true">
-    <h1 class="title-font  mb-[10px] md:text-4xl text-3xl font-bold tracking-tight text-white  text-center" data-aos="zoom-in"  data-aos-once="true">What our customers says</h1>
+    <h1 class="title-font  mb-[10px] md:text-4xl text-3xl font-bold tracking-tight text-white  text-center" data-aos="zoom-in"  data-aos-once="true">What our <span class="text-green-600">customers</span> says</h1>
     <p class="mt-4  text-xl  mb-[10px] text-center text-white" data-aos="zoom-in"  data-aos-once="true">Thousands of people get benefit</p>
     <h2 class="font-extrabold text-center text-white mb-[20px]">_______________</h2>
     <div class="flex flex-wrap -m-4" data-aos="zoom-in"  data-aos-once="true">
       <div class="p-4 md:w-1/2 w-full">
-        <div class="h-full bg-white p-8 rounded">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700 mb-4" viewBox="0 0 975.036 975.036">
+        <div class="h-full bg-zinc-700 p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-green-700 mb-4" viewBox="0 0 975.036 975.036">
             <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
           </svg>
-          <p class="leading-relaxed mb-6 text-gray-600">
-            Crest Alpha Trade has the simplest interface of all and also has the fastest entry point into the market.I was a banker who was deep in debt, but  with the help of Crest Alpha Trade ..., now I am living well and comfortable with my family</p>
+          <p class="leading-relaxed mb-6 text-white">
+            Fintex Ground Trade has the simplest interface of all and also has the fastest entry point into the market.I was a banker who was deep in debt, but  with the help of Fintex Ground Trade ..., now I am living well and comfortable with my family</p>
           <a class="inline-flex items-center">
             <img alt="testimonial" src="{% static 'testimonial_img2.jpg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
             <span class="flex-grow flex flex-col pl-4">
-              <span class="title-font font-medium text-blue-700">Emily Caulfield</span>
-              <span class="text-blue-700 text-sm">- Happy User</span>
+              <span class="title-font font-medium text-green-500">Emily Caulfield</span>
+              <span class="text-green-500 text-sm">- Happy User</span>
             </span>
           </a>
         </div>
       </div>
       <div class="p-4 md:w-1/2 w-full">
-        <div class="h-full bg-white p-8 rounded">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700  mb-4" viewBox="0 0 975.036 975.036">
+        <div class="h-full bg-zinc-700 p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-green-700  mb-4" viewBox="0 0 975.036 975.036">
             <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
           </svg>
-          <p class="leading-relaxed mb-6 text-gray-600">My name is William Tyler Pelicione. Few weeks I have traded with Crest Alpha Trade, i made enough profit of 2.8btc and my withdrawal was processed instantly. Crest Alpha Trade is the best....</p>
+          <p class="leading-relaxed mb-6 text-white">My name is William Tyler Pelicione. Few weeks I have traded with Fintex Ground Trade, i made enough profit of 2.8btc and my withdrawal was processed instantly. Fintex Ground Trade is the best....</p>
           <a class="inline-flex items-center">
             <img alt="testimonial" src="{% static 'testimonial_img.jpg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
             <span class="flex-grow flex flex-col pl-4">
-              <span class="title-font font-medium text-blue-700">William Tyler Pelicione</span>
-              <span class="text-blue-700 text-sm">- Business Executive</span>
+              <span class="title-font font-medium text-green-500">William Tyler Pelicione</span>
+              <span class="text-green-500 text-sm">- Business Executive</span>
             </span>
           </a>
         </div>
       </div>
       <div class="p-4 md:w-1/2 w-full">
-        <div class="h-full bg-white p-8 rounded">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700 mb-4" viewBox="0 0 975.036 975.036">
+        <div class="h-full bg-zinc-700 p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-green-700 mb-4" viewBox="0 0 975.036 975.036">
             <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
           </svg>
-          <p class="leading-relaxed mb-6 text-gray-600">This is a more than a trading company. Giving you guys 5 ratings for your support services. Great company. Awesome support.. Crest Alpha Trade is the best....</p>
+          <p class="leading-relaxed mb-6 text-white">This is a more than a trading company. Giving you guys 5 ratings for your support services. Great company. Awesome support.. Fintex Ground Trade is the best....</p>
           <a class="inline-flex items-center">
             <img alt="testimonial" src="{% static 'download (1).jpeg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
             <span class="flex-grow flex flex-col pl-4">
-              <span class="title-font font-medium text-blue-700">Cherry Canaan</span>
-              <span class="text-blue-700 text-sm"> - Happy Customer</span>
+              <span class="title-font font-medium text-green-500">Cherry Canaan</span>
+              <span class="text-green-500 text-sm"> - Happy Customer</span>
             </span>
           </a>
         </div>
       </div>
       <div class="p-4 md:w-1/2 w-full">
-        <div class="h-full bg-white p-8 rounded">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-blue-700 mb-4" viewBox="0 0 975.036 975.036">
+        <div class="h-full bg-zinc-700 p-8 rounded">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="block w-5 h-5 text-green-700 mb-4" viewBox="0 0 975.036 975.036">
             <path d="M925.036 57.197h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.399 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l36 76c11.6 24.399 40.3 35.1 65.1 24.399 66.2-28.6 122.101-64.8 167.7-108.8 55.601-53.7 93.7-114.3 114.3-181.9 20.601-67.6 30.9-159.8 30.9-276.8v-239c0-27.599-22.401-50-50-50zM106.036 913.497c65.4-28.5 121-64.699 166.9-108.6 56.1-53.7 94.4-114.1 115-181.2 20.6-67.1 30.899-159.6 30.899-277.5v-239c0-27.6-22.399-50-50-50h-304c-27.6 0-50 22.4-50 50v304c0 27.601 22.4 50 50 50h145.5c-1.9 79.601-20.4 143.3-55.4 191.2-27.6 37.8-69.4 69.1-125.3 93.8-25.7 11.3-36.8 41.7-24.8 67.101l35.9 75.8c11.601 24.399 40.501 35.2 65.301 24.399z"></path>
           </svg>
-          <p class="leading-relaxed mb-6 text-gray-600">I encountered a small issue and reached out to the customer support team. Their response was prompt, and the issue was resolved quickly. It's refreshing to see a team that genuinely cares about its users.</p>
+          <p class="leading-relaxed mb-6 text-white">I encountered a small issue and reached out to the customer support team. Their response was prompt, and the issue was resolved quickly. It's refreshing to see a team that genuinely cares about its users.</p>
           <a class="inline-flex items-center">
             <img alt="testimonial" src="{% static '02.jpg' %}" class="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center">
             <span class="flex-grow flex flex-col pl-4">
-              <span class="title-font font-medium text-blue-700">Josh Patrick</span>
-              <span class="text-blue-700 text-sm">- Satisfied Customer</span>
+              <span class="title-font font-medium text-green-500">Josh Patrick</span>
+              <span class="text-green-500 text-sm">- Satisfied Customer</span>
             </span>
           </a>
         </div>
@@ -224,22 +306,22 @@
 </section>
 
  
-<div id="contacts" class="px-5 grid gap-8 grid-cols-1 md:grid-cols-2 py-24 mx-auto bg-gray-100 text-gray-600 rounded-lg">
+<div id="contacts" class="px-5 grid gap-8 grid-cols-1 md:grid-cols-2 py-24 mx-auto bg-zinc-800 text-white rounded-lg">
     <div class="flex flex-col justify-center" data-aos="fade-up"  data-aos-once="true">
         <div>
-            <h2 class="text-4xl text-blue-700 lg:text-5xl font-bold leading-tight">
-                Lets talk about everything!
+            <h2 class="text-4xl text-white lg:text-5xl font-bold leading-tight">
+               <span class="text-green-600"> Lets talk</span> about everything!
             </h2>
-            <div class="text-gray-700 mt-8">
+            <div class="text-gray-200 mt-8">
                 Hate forms? Send us an&nbsp;
-                <a class="underline" href="mailto:someone@gmail.com">
+                <a class="underline" href="mailto:fintexgroundtrade@gmail.com">
                     email
                 </a>
                 instead.
             </div>
         </div>
         <div class="mt-12 text-center">
-            <img src="{% static 'pensive-curly-haired-female-student-calls-groupmate-via-smartphone-sits-chair-own-study-room-table-with-desk-lamp-notepads-sticky-notes-wall-with-written-information.jpg' %}" alt="Contact" />
+            <img src="{% static 'happy-young-woman-talking-cell-phone-against-green-background_23-2148056310.avif' %}" alt="Contact" />
         </div>
     </div>
 
@@ -248,32 +330,32 @@
     <form id="myForm" method="post" action="" data-submit-url="./Onboarding/views.py">
       {% csrf_token %} 
         <div>
-            <span class="uppercase text-sm text-gray-600 font-bold">
+            <span class="uppercase text-sm text-green-600 font-bold">
                 Full Name
             </span>
             <div>{{ form.name }}</div>
         </div>
         <div class="mt-8">
-            <span class="uppercase text-sm text-gray-600 font-bold">
+            <span class="uppercase text-sm text-green-600 font-bold">
                 Email
             </span>
           {{ form.email }}
         </div>
         <div class="mt-8">
-            <span class="uppercase text-sm text-gray-600 font-bold">
+            <span class="uppercase text-sm text-green-600 font-bold">
                 Phone Number
             </span>
             {{ form.number }}
         </div>
         <div class="mt-8">
-            <span class="uppercase text-sm text-gray-600 font-bold">
+            <span class="uppercase text-sm text-green-600 font-bold">
                 Message
             </span>
                 {{ form.message }} 
         </div>
         <div class="mt-8">
             <button
-                class="uppercase text-sm font-bold tracking-wide bg-indigo-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:bg-indigo-700"
+                class="uppercase text-sm font-bold tracking-wide bg-green-500 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline hover:bg-green-700"
                 type="submit"
             >
                 Send Message
@@ -291,12 +373,12 @@
 <footer class="text-gray-600 body-font" data-aos="zoom-in"  data-aos-once="true">
   <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
     <a href="{% url 'Onboarding:Home' %}" class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-      <img src="{% static 'Digital_World__1_-removebg-preview.png' %}">
+      <img src="{% static '1-removebg-preview.png' %}">
     </a>
-    <p class="text-sm text-gray-200 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© Copyright Crest Alpha Trade 2023 . All right reserved.
+    <p class="text-sm text-gray-200 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4">© Copyright Fintex Ground Trade 2023 . All right reserved.
     </p>
     <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-      <a href="mailto:crestalphatrade.com@gmail.com" class="mt-2 text-sm text-gray-200">crestalphatrade.com@gmail.com</a>
+      <a href="mailto:fintexgroundtrade@gmail.com" class="mt-2 text-sm text-gray-200">fintexgroundtrade@gmail.com</a>
     </span>
   </div>
 </footer>
@@ -304,10 +386,10 @@
 
 <!--Popup -->
 <div class="btn-bottom fixed bottom-4 right-4 md:w-[350px] w-3/4">
-  <h1 id="popupMessage" class="bg-blue-700 hover:bg-blue-600 text-white font-bold py-4 px-6 rounded-[20px] md:w-[350px] w-[100%] transition ease-in-out duration-300 z-[10000000000000000000000000000000000000000000]"></h1>
+  <h1 id="popupMessage" class="bg-green-700 hover:bg-green-600 text-white font-bold py-4 px-6 rounded-[20px] md:w-[350px] w-[100%] transition ease-in-out duration-300 z-[10000000000000000000000000000000000000000000]"></h1>
 </div>
 
-<div class="translate flex justify-end mb-[130px]  md:mb-0 btn-bottom fixed bottom-4 left-4 z-[1]">
+<!-- <div class="translate flex justify-end mb-[130px]  md:mb-0 btn-bottom fixed bottom-4 left-4 z-[1]">
   <div class="bg-indigo-300 w-[100%]  px-4 py-4 rounded-[20px] text-white" id="google_translate_element"></div>
 </div>
 <script type="text/javascript">
@@ -315,7 +397,7 @@
       new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
   }
 </script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script> -->
 
 <script>
      function togglePopup() {

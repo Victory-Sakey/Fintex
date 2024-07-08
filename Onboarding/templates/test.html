@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
-    <title>Register  |   Crest Alpha Trade</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img2/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img2/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img2/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img2/site.webmanifest' %}">
+    <title>Register  |   Fintex Ground Trade</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gradient-to-r from-gray-800  to-blue-900">
+<body class="bg-zinc-900">
     <div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
         <div class="sm:mx-auto sm:w-full sm:max-w-sm">
-        <img class="mx-auto h-10 w-auto" src="{% static 'Digital_World__1_-removebg-preview.png' %}" alt="Your Company">
-        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Create an Account</h2>
+        <img class="mx-auto w-[80px]" src="{% static '1-removebg-preview.png' %}" alt="Your Company">
+        <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-white">Create an <span class="text-green-600">Account</span></h2>
         </div>
         <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
     <form method="POST" action="">
@@ -29,12 +29,12 @@
             {% endif %}
         </div>
     {% endfor %}
-    <input type="submit" class="mt-4 block w-full cursor-pointer rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"> <!-- Submit button with styles -->
+    <input type="submit" class="mt-4 block w-full cursor-pointer rounded-md bg-green-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"> <!-- Submit button with styles -->
 </form>
 
     <p class="mt-10 text-center text-sm text-white">
         Already have an account?
-        <a href="{% url 'Onboarding:Login' %}" class="font-semibold leading-6 text-indigo-400 hover:text-blue-600">Sign in instead</a>
+        <a href="{% url 'Onboarding:Login' %}" class="font-semibold leading-6 text-green-400 hover:text-green-600">Sign in instead</a>
     </p>
     </div>
 </div>
