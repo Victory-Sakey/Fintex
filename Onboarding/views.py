@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect , get_object_or_404
+upfrom django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from .models import ContactFormSubmision , Verification , Administration , Profile
 from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm
@@ -80,7 +80,7 @@ def Register(request):
                 code = random.choices(codes , k=random.randint(6   , 6))
                 verification_code = ' '.join(code)
                 print(verification_code)
-                subject = "Your Verification Code - Crest Alpha Trade"
+                subject = "Your Verification Code - Fintex Ground Trade"
                 subject2 = f'{user} just signed up!'
                 # Render HTML email template
                 html_message = render_to_string('registeration_email.html', {'user': user ,  'verification_code': verification_code})
