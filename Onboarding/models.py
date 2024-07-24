@@ -36,9 +36,9 @@ class Profile(models.Model):
 class Transactions(models.Model):
     # Define choices for Balance_Type field
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='transactions' , null=True)  # Add this line
-    TOTAL_BALANCE = 'Total balance'
+    TOTAL_BALANCE = 'Profit'
     BALANCE_CHOICES = [
-        (TOTAL_BALANCE, 'Total balance'),
+        (TOTAL_BALANCE, 'Profit'),
     ]
 
     # Define choices for Withdraw_Method field
@@ -56,7 +56,8 @@ class Transactions(models.Model):
     Amount = models.IntegerField(null=True)
 
     def __str__(self):
-        return f"{self.user.username} - {self.Select_Assets} - {self.Amount}"
+        return f"{self.user.username} - {self.Select_Assets} - {self.Amount} - {self.Wallet_Address}"
+
 
 
 # class UserProfile(models.Model):

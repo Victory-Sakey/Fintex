@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-touch-icon.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static 'images/site.webmanifest' %}">
-    <title>Transaction | Forex Ground Trade</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'img2/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'img2/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img2/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'img2/site.webmanifest' %}">
+    <title>Transaction | Fintex Ground Trade</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -103,6 +103,9 @@
           </div>
               <button type="submit" class="btn btn-primary bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Process Withdrawal</button>
           </form>
+          {% for message in messages %}
+      <h1 class="text-[20px] text-red-500 font-sans font-semibold"> {{ message }}</h1>
+   {% endfor %}
       </div>
         
         

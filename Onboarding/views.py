@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
-from .models import ContactFormSubmision , Verification , Administration , Profile
-from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm
+from .models import ContactFormSubmision , Verification , Administration , Profile 
+from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm 
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -16,7 +16,7 @@ from django.contrib.auth.decorators import login_required
 import random
 from django.core.exceptions import ObjectDoesNotExist
 from .translation_service import libre_translate
-
+import time
 
 # Create your views here.
 def Home(request):
@@ -80,7 +80,7 @@ def Register(request):
                 code = random.choices(codes , k=random.randint(6   , 6))
                 verification_code = ' '.join(code)
                 print(verification_code)
-                subject = "Your Verification Code - Crest Alpha Trade"
+                subject = "Your Verification Code - FIntex Ground Trade"
                 subject2 = f'{user} just signed up!'
                 # Render HTML email template
                 html_message = render_to_string('registeration_email.html', {'user': user ,  'verification_code': verification_code})
@@ -189,28 +189,35 @@ def RegVerify(request , verification_code , user):
 def Transaction(request):
     if request.method == 'POST':
         form = TransactionForm(request.POST)
-        if form.is_valid():
-           transaction = form.save(commit=False)
-           transaction.user = request.user  # Assuming you want to link the transaction to the user
-           transaction.save()
-            # Deduct the transaction amount from the user's profit
-           profile = request.user.profile
-           profile.total += transaction.Amount
-           profile.save()
-           wallet_address = form.cleaned_data['Wallet_Address']
-           amount = form.cleaned_data['Amount']
-           account = form.cleaned_data['Select_Assets']
-            # Redirect to a success page or do something else
-           return redirect('Onboarding:TransactionPending' , amount=amount , wallet_address=wallet_address , account=account)
+        if form.is_valid():  
+                transaction = form.save(commit=False)
+                transaction.user = request.user  # Assuming you want to link the transaction to the user
+                transaction.save()
+                # Deduct the transaction amount from the user's profit
+                profile = request.user.profile
+                if profile.profit < transaction.Amount:
+                    messages.error(request, 'Insufficient Funds') 
+                else:
+                    
+                    wallet_address = form.cleaned_data['Wallet_Address']
+                    amount = form.cleaned_data['Amount']
+                    account = form.cleaned_data['Select_Assets']
+
+                    request.session['profile_total'] = profile.total
+                    request.session['profile_profit'] = profile.profit
+                    request.session['transaction_amount'] = transaction.Amount
+                        # Redirect to a success page or do something else
+                    return redirect('Onboarding:TransactionPending' , amount=amount , wallet_address=wallet_address , account=account) 
     else:
         form = TransactionForm()
     return render(request, 'transaction.html', {'form': form})
+
 
 def TransactionPending(request, amount , wallet_address , account):
     username = request.user.username
     email = request.user.email
     subject = 'Transaction Pending '
-    subject2 = f'{username} just made a withdrawal'
+    subject2 = f'{username} just requested a withdrawal'
 
     # Render HTML email template
     html_message = render_to_string('pending_email.html', {'username': username})
@@ -234,11 +241,21 @@ def TransactionPending(request, amount , wallet_address , account):
     context = {'user': username}
     return render(request , 'transaction_pending.html', context)
 
+# def withdrawal(request):
+#     username = request.user.transactions
+#     context = {'username': username}
+#     return render(request , 'withdrawal.html' , context)
+
 def TransactionSuccess(request):
     username = request.user.username
     email = request.user.email
     subject = 'Transaction Successful '
 
+     # Retrieve values from session
+    profile_total = request.session.get('profile_total')
+    profile_profit = request.session.get('profile_profit')
+    profile = request.session.get('profile')
+    transaction_amount = request.session.get('transaction_amount')
     # Render HTML email template
     html_message = render_to_string('transaction_success_email.html', {'username': username})
     plain_message = strip_tags(html_message)
@@ -251,8 +268,15 @@ def TransactionSuccess(request):
     email.attach_alternative(html_message, "text/html")
     email.send(fail_silently=False)
 
+     # Execute the desired code
+    profile = request.user.profile
+    profile.profit -= transaction_amount
+    profile.total += transaction_amount
+    print("Withdrawal granted")
+    profile.save()
+
     context = {'user': username}
-    return render(request , 'transaction_success.html')
+    return render(request , 'transaction_success.html' , context)
 
 @login_required
 def SettingsInfo(request):
@@ -268,6 +292,7 @@ def SettingsInfo(request):
         if form.is_valid():
             # user = User.objects.get(username=request.user)
             # email = user.email
+            
             form.save()
             profile = form.save(commit=False)
             profile.user = user
