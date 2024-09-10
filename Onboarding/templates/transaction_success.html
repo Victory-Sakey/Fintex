@@ -27,7 +27,7 @@
         </div>
 
       <h1 class="mt-4 text-3xl font-bold tracking-tight text-white sm:text-5xl">Withdrawal <span class="text-green-600">Succesful!</span></h1>
-      <p class="mt-6 text-base leading-7 text-blue-100 " style="font-size: 20px; padding-left: 50px; padding-right: 50px;">Your withdrawal is completed, {{ user }}. Thank you for your patience.</p>
+      <p class="mt-6 text-base md:px-[50px] px-[20px] leading-7 text-blue-100 " style="font-size: 20px;">Your withdrawal is completed, {{ user }}. Thank you for your patience.</p>
       <div class="mt-10 flex items-center justify-center gap-x-6">
         <a href="{% url 'Onboarding:dashboard' %}" class="rounded-md bg-green-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-green-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600">Go back to Dashboard</a>
         <a href="{% url 'Onboarding:LogoutUser' %}" class="text-sm font-semibold text-white">Log Out<span aria-hidden="true">&rarr;</span></a>
