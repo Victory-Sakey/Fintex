@@ -95,7 +95,7 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgresql://fintex_s2o7_user:h659FEWWB85D2ERIdqMhf3PnHlAlLY2p@dpg-ct45m20gph6c73c4oc10-a.oregon-postgres.render.com/fintex_s2o7')
+DATABASES['default'] = dj_database_url.parse('postgresql://fintex_e9s1_user:WvH9czlWT8RVJxdFQOlNMvExvuJMd07N@dpg-cucg3sl6l47c73c8tkpg-a.oregon-postgres.render.com/fintex_e9s1')
 
 # 
 
