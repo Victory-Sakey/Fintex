@@ -90,12 +90,15 @@ WSGI_APPLICATION = 'Crest.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fintex_db',
+        'USER': 'fintex',
+        'PASSWORD': 'Fintex@2025',
+        'HOST': 'postgresql-fintex.alwaysdata.net',
+        'PORT': '5432',
     }
 }
 
-DATABASES['default'] = dj_database_url.parse('postgresql://fintex_e9s1_user:WvH9czlWT8RVJxdFQOlNMvExvuJMd07N@dpg-cucg3sl6l47c73c8tkpg-a.oregon-postgres.render.com/fintex_e9s1')
 
 # 
 
