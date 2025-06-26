@@ -323,9 +323,15 @@ def SettingsInfo(request):
 
 
 def AdminDashboard(request):
-    users = User.objects.all()
-    context = {'users': users}
-    return render(request, 'admin_dash.html', context)
+    users = User.objects.filter(username__icontains="Vic")
+    form = Search(request.GET , None)
+    result = None
+    if form.is_valid():
+        search = form.cleaned_data['search']
+        result = User.objects.filter(username__icontains=search)
+    else:
+        form = Search()
+    return render(request , 'admin_dash.html' , {'form': form , 'result': result , 'users': users})
 
 
 # views.py
