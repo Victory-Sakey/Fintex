@@ -1,7 +1,7 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from .models import ContactFormSubmision , Verification , Administration , Profile 
-from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm 
+from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm , Search
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
