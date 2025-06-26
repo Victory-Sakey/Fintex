@@ -22,8 +22,15 @@
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-green-900 text-white container mx-auto">
-    <h1 class="text-3xl pt-4">Admin Dashboard</h1>
+<body class="bg-gradient-to-r from-gray-800  to-blue-900  container mx-auto">
+    <div class="header  mx-auto container w-full px-3 py-5 flex flex-col justify-between">
+        <h1 class="text-3xl text-white font-bold pt-4">Admin Dashboard</h1>
+    <form class="flex align-left items-left justify-end pt-3" method="GET">
+        {{ form.as_p }}
+        <button class="ml-[1px]  bg-blue-600 font-bold text-gray-900" type="submit">Search</button>
+    </form>
+    </div>
+    
     <table>
         <thead>
             <tr class="text-gray-950">
@@ -39,8 +46,8 @@
                 <th>Actions</th>
             </tr>
         </thead>
-        <tbody>
-            {% for user in users %}
+        <tbody class="text-white">
+            {% for user in result %}
             <tr>
                 <td>{{ user.username }}</td>
                 <td>{{ user.email }}</td>
@@ -56,5 +63,8 @@
             {% endfor %}
         </tbody>
     </table>
+
+
+
 </body>
 </html>
