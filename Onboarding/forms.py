@@ -109,3 +109,6 @@ class ProfileForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.required = False  # Ensure all fields are optional
+
+class Search(forms.Form):
+    search = forms.CharField(max_length=255)
