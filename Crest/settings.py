@@ -10,15 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
-# Email-Info
-from .email_info import *
-EMAIL_HOST = EMAIL_HOST
-EMAIL_HOST_USER = EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = EMAIL_HOST_PASSWORD
-EMAIL_PORT = EMAIL_PORT
-EMAIL_USE_TLS = EMAIL_USE_TLS
-EMAIL_BACKEND = EMAIL_BACKEND
-
 
 import dj_database_url
 import os
@@ -158,3 +149,5 @@ AUTH_PROFILE_MODULE = 'Onboarding.Profile'  # Replace 'yourapp' with your actual
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+BREVO_API_KEY = "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"

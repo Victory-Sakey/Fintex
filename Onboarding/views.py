@@ -1,6 +1,6 @@
 from django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
-from .models import ContactFormSubmision , Verification , Administration , Profile 
+from .models import ContactFormSubmision , Verification , Administration , Profile
 from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm , Search
 from django.core.mail import send_mail
 from django.core.mail import EmailMultiAlternatives
@@ -16,7 +16,15 @@ from django.contrib.auth.decorators import login_required
 import random
 from django.core.exceptions import ObjectDoesNotExist
 from .translation_service import libre_translate
-import time
+from threading import Thread
+from Crest.email_info import *
+import sib_api_v3_sdk
+from sib_api_v3_sdk.rest import ApiException
+
+def send_async_email(email_obj):
+    def _send():
+        email_obj.send(fail_silently=False)
+    Thread(target=_send).start()
 
 # Create your views here.
 def Home(request):
@@ -49,8 +57,8 @@ def Home(request):
             admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
             email.attach_alternative(html_message, "text/html")
             admin_email.attach_alternative(second_html_message , 'text/html')
-            email.send(fail_silently=False)
-            admin_email.send(fail_silently=False)
+            send_async_email(email)
+            send_async_email(admin_email)
 
 
             print("Worked")
@@ -70,41 +78,59 @@ def Register(request):
             form = CreateUserForm(request.POST)
             if form.is_valid():
                 user = form.save()
-                # Check if profile exists, create if not
-                profile = Profile.objects.get_or_create(user=user)[0]  # Get or create profile
-                # Now you can set additional profile fields if needed
+
+                # Ensure profile exists
+                profile = Profile.objects.get_or_create(user=user)[0]
                 profile.save()
-                user = form.cleaned_data['username']
+
+                username = form.cleaned_data['username']
                 user_email = form.cleaned_data['email']
-                codes = ["0" , "1" , "2" , "3" , "4" , "5" , "6" , "7" , "8" , "9"]
-                code = random.choices(codes , k=random.randint(6   , 6))
+
+                # Generate verification code
+                codes = [str(i) for i in range(10)]
+                code = random.choices(codes, k=6)
                 verification_code = ' '.join(code)
                 print(verification_code)
-                subject = "Your Verification Code - FIntex Ground Trade"
-                subject2 = f'{user} just signed up!'
-                # Render HTML email template
-                html_message = render_to_string('registeration_email.html', {'user': user ,  'verification_code': verification_code})
+
+                # Prepare emails
+                subject = "Your Verification Code - Crest Alpha Trade"
+                subject2 = f'{username} just signed up!'
+
+                html_message = render_to_string(
+                    'registeration_email.html',
+                    {'user': username, 'verification_code': verification_code}
+                )
                 plain_message = strip_tags(html_message)
-                
-                second_html_message = render_to_string('admin_reg_email.html' , {'user': user ,  'email': user_email})
+
+                second_html_message = render_to_string(
+                    'admin_reg_email.html',
+                    {'user': username, 'email': user_email}
+                )
                 admin_plain_message = strip_tags(second_html_message)
 
-                 # Strips HTML tags to create plaintext version
+                # Send user email
+                send_brevo_email(
+                    subject=subject,
+                    html_content=html_message,
+                    to_emails=[user_email],
+                    text_content=plain_message,
+                )
 
-                # Send HTML email
-                configured_email = settings.EMAIL_HOST_USER
-                receiver = [user_email]
-                admin = ['fintexgroundtrade@gmail.com']
-                email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
-                admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
-                email.attach_alternative(html_message, "text/html")
-                admin_email.attach_alternative(second_html_message , 'text/html')
-                email.send(fail_silently=False)
-                admin_email.send(fail_silently=False)
-                messages.success(request , f'Account created successfully, {user}')
-                return redirect('Onboarding:RegVerify' , verification_code=verification_code , user=user)
+                # Send admin email
+                send_brevo_email(
+                    subject=subject2,
+                    html_content=second_html_message,
+                    to_emails=["fintexgroundtrade@gmail.com"],
+                    text_content=admin_plain_message,
+                )
+
+                messages.success(request, f'Account created successfully, {username}')
+                return redirect('Onboarding:RegVerify',
+                                verification_code=verification_code,
+                                user=username)
+
         context = {'form': form}
-        return render(request , 'test.html' , context)
+        return render(request, 'test.html', context)
 
 def Login(request):
     if request.user.is_authenticated:
@@ -132,35 +158,44 @@ def dashboard(request):
     return render(request , 'dashboard.html')
 
 @login_required(login_url='Onboarding:Login')
-
 def Trade(request):
     # Retrieve the username of the logged-in user
     username = request.user.username
     email = request.user.email
+
+    # Subjects
     subject = 'Successful Trade - Your Profit Awaits!'
     subject2 = f'{username} made a Trade!'
 
-    # Render HTML email template
+    # Render HTML email templates
     html_message = render_to_string('trade_email.html', {'username': username})
     plain_message = strip_tags(html_message)
-    
-    second_html_message = render_to_string('admin_trade_email.html' , {'username': username ,  'email': email})
+
+    second_html_message = render_to_string(
+        'admin_trade_email.html',
+        {'username': username, 'email': email}
+    )
     admin_plain_message = strip_tags(second_html_message)
-        # Strips HTML tags to create plaintext version
 
-    # Send HTML email
-    configured_email = settings.EMAIL_HOST_USER
-    receiver = [email]
-    admin = ['fintexgroundtrade@gmail.com']
-    email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
-    admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
-    email.attach_alternative(html_message, "text/html")
-    admin_email.attach_alternative(second_html_message , 'text/html')
-    email.send(fail_silently=False)
-    admin_email.send(fail_silently=False)
+    # Send to user
+    send_brevo_email(
+        subject=subject,
+        html_content=html_message,
+        to_emails=[email],
+        text_content=plain_message
+    )
 
+    # Send to admin
+    send_brevo_email(
+        subject=subject2,
+        html_content=second_html_message,
+        to_emails=['fintexgroundtrade@gmail.com'],
+        text_content=admin_plain_message
+    )
+
+    # Render response
     context = {'user': username}
-    return render(request , 'trade.html', context)
+    return render(request, 'trade.html', context)
 
 def RegVerify(request , verification_code , user):
      if request.user.is_authenticated:
@@ -195,8 +230,10 @@ def Transaction(request):
                 transaction.save()
                 # Deduct the transaction amount from the user's profit
                 profile = request.user.profile
-                if profile.profit < transaction.Amount:
+                if profile.total < transaction.Amount:
                     messages.error(request, 'Insufficient Funds') 
+                elif transaction.Amount < 3000:
+                    messages.error(request , "Minimun withdrawal is $3000")
                 else:
                     
                     wallet_address = form.cleaned_data['Wallet_Address']
@@ -213,70 +250,84 @@ def Transaction(request):
     return render(request, 'transaction.html', {'form': form})
 
 
-def TransactionPending(request, amount , wallet_address , account):
+def TransactionPending(request, amount, wallet_address, account):
     username = request.user.username
     email = request.user.email
-    subject = 'Transaction Pending '
+
+    subject = 'Transaction Pending'
     subject2 = f'{username} just requested a withdrawal'
 
-    # Render HTML email template
+    # Render HTML templates
     html_message = render_to_string('pending_email.html', {'username': username})
     plain_message = strip_tags(html_message)
 
-    second_html_message = render_to_string('admin_pending_email.html' , {'username': username ,  'email': email , 'amount': amount , 'wallet_address': wallet_address , 'account': account})
+    second_html_message = render_to_string(
+        'admin_pending_email.html',
+        {
+            'username': username,
+            'email': email,
+            'amount': amount,
+            'wallet_address': wallet_address,
+            'account': account
+        }
+    )
     admin_plain_message = strip_tags(second_html_message)
-        # Strips HTML tags to create plaintext version
 
-    # Send HTML email
-    configured_email = settings.EMAIL_HOST_USER
-    receiver = [email]
-    admin = ['fintexgroundtrade@gmail.com']
-    email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
-    admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
-    email.attach_alternative(html_message, "text/html")
-    admin_email.attach_alternative(second_html_message , 'text/html')
-    email.send(fail_silently=False)
-    admin_email.send(fail_silently=False)
+    # Send to user
+    send_brevo_email(
+        subject=subject,
+        html_content=html_message,
+        to_emails=[email],
+        text_content=plain_message
+    )
+
+    # Send to admin
+    send_brevo_email(
+        subject=subject2,
+        html_content=second_html_message,
+        to_emails=['fintexgroundtrade@gmail.com'],
+        text_content=admin_plain_message
+    )
 
     context = {'user': username}
-    return render(request , 'transaction_pending.html', context)
+    return render(request, 'transaction_pending.html', context)
 
-# def withdrawal(request):
-#     username = request.user.transactions
-#     context = {'username': username}
-#     return render(request , 'withdrawal.html' , context)
 
 def TransactionSuccess(request):
     username = request.user.username
     email = request.user.email
-    subject = 'Transaction Successful '
+    subject = 'Transaction Successful'
 
-     # Retrieve values from session
+    # Retrieve values from session
     profile_total = request.session.get('profile_total')
     profile_profit = request.session.get('profile_profit')
     profile = request.session.get('profile')
     transaction_amount = request.session.get('transaction_amount')
+
     # Render HTML email template
-    html_message = render_to_string('transaction_success_email.html', {'username': username})
+    html_message = render_to_string(
+        'transaction_success_email.html',
+        {'username': username}
+    )
     plain_message = strip_tags(html_message)
-        # Strips HTML tags to create plaintext version
 
-    # Send HTML email
-    configured_email = settings.EMAIL_HOST_USER
-    receiver = [email]
-    email = EmailMultiAlternatives(subject, plain_message, configured_email, receiver)
-    email.attach_alternative(html_message, "text/html")
-    email.send(fail_silently=False)
+    # Send email
+    send_brevo_email(
+        subject=subject,
+        html_content=html_message,
+        to_emails=[email],
+        text_content=plain_message
+    )
 
-     # Execute the desired code
+    # Execute the desired code
     profile = request.user.profile
-    profile.profit -= transaction_amount
-    profile.total += transaction_amount
+    profile.total -= transaction_amount
     print("Withdrawal granted")
     profile.save()
 
     context = {'user': username}
-    return render(request , 'transaction_success.html' , context)
+    return render(request, 'transaction_success.html', context)
+
 
 @login_required
 def SettingsInfo(request):
@@ -292,7 +343,6 @@ def SettingsInfo(request):
         if form.is_valid():
             # user = User.objects.get(username=request.user)
             # email = user.email
-            
             form.save()
             profile = form.save(commit=False)
             profile.user = user
@@ -332,6 +382,9 @@ def AdminDashboard(request):
     else:
         form = Search()
     return render(request , 'admin_dash.html' , {'form': form , 'result': result , 'users': users})
+
+
+
 
 
 # views.py
@@ -375,6 +428,3 @@ def my_view(request):
     age = profile.age
     # Use the profile information as needed in your view logic
     return render(request, 'my_view.html', {'profile': profile})
-
-
-    
