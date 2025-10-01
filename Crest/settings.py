@@ -14,6 +14,9 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import dj_database_url
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -150,4 +153,4 @@ AUTH_PROFILE_MODULE = 'Onboarding.Profile'  # Replace 'yourapp' with your actual
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BREVO_API_KEY = "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"
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
