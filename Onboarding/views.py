@@ -383,10 +383,6 @@ def AdminDashboard(request):
         form = Search()
     return render(request , 'admin_dash.html' , {'form': form , 'result': result , 'users': users})
 
-
-
-
-
 # views.py
 
 def edit_user(request, user_id):
