@@ -37,10 +37,11 @@
   </main>
 
   <script type="text/javascript">
-    // Redirect to next view after 1 minute (60000 milliseconds)
-    setTimeout(function(){
-        window.location.href = "{% url 'Onboarding:TransactionSuccess' %}";
-    }, 600000);
+  console.log("Script loaded!");
+  setTimeout(function(){
+      console.log("Redirecting now...");
+      window.location.href = "{% url 'Onboarding:TransactionSuccess' %}";
+  }, 60000); // 10 minutes
 </script>
 
   

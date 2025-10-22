@@ -230,8 +230,10 @@ def Transaction(request):
                 transaction.save()
                 # Deduct the transaction amount from the user's profit
                 profile = request.user.profile
-                if profile.total < transaction.Amount:
-                    messages.error(request, 'Insufficient Funds') 
+                print(profile.total, type(profile.profit))
+
+                if profile.profit < transaction.Amount:
+                    messages.error(request, 'Insufficent Funds')
                 elif transaction.Amount < 3000:
                     messages.error(request , "Minimun withdrawal is $3000")
                 else:
@@ -321,7 +323,8 @@ def TransactionSuccess(request):
 
     # Execute the desired code
     profile = request.user.profile
-    profile.total -= transaction_amount
+    profile.profit -= transaction_amount
+    profile.total += transaction_amount
     print("Withdrawal granted")
     profile.save()
 
