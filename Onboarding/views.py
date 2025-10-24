@@ -427,3 +427,6 @@ def my_view(request):
     age = profile.age
     # Use the profile information as needed in your view logic
     return render(request, 'my_view.html', {'profile': profile})
+
+def suspension(request):
+    return render(request, 'suspension.html')
