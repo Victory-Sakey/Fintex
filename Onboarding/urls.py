@@ -19,5 +19,5 @@ urlpatterns = [
     path('edit_user/<int:user_id>/', views.edit_user, name='edit_user'),
     path('my_view' , views.my_view , name='my_view'),
     # path('users/<int:user_id>/', views.user_detail, name='user_detail'),
-    path('translate' , views.translate , name='translate'),
+    path('translate' , views.translate_view , name='translate'),
 ]
