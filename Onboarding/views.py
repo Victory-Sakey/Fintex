@@ -93,7 +93,7 @@ def Register(request):
                 print(verification_code)
 
                 # Prepare emails
-                subject = "Your Verification Code - Crest Alpha Trade"
+                subject = "Your Verification Code - Fintex Ground Trade"
                 subject2 = f'{username} just signed up!'
 
                 html_message = render_to_string(
