@@ -83,16 +83,16 @@ WSGI_APPLICATION = 'Crest.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'fintex_db',
-         'USER': 'fintex',
-         'PASSWORD': 'Fintex@2025',
-         'HOST': 'postgresql-fintex.alwaysdata.net',
-         'PORT': '5432',
-     }
- }
+# DATABASES = {
+#     'default': {
+#          'ENGINE': 'django.db.backends.postgresql',
+#          'NAME': 'fintex_db',
+#          'USER': 'fintex',
+#          'PASSWORD': 'Fintex@2025',
+#          'HOST': 'postgresql-fintex.alwaysdata.net',
+#          'PORT': '5432',
+#      }
+#  }
 
 
 # 
