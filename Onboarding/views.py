@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect , get_object_or_404
+eyfrom django.shortcuts import render , redirect , get_object_or_404
 from django.http import HttpResponse
 from .models import ContactFormSubmision , Verification , Administration , Profile
 from .forms import ContactForm , CreateUserForm , VerificationForm , AdministrationForm , TransactionForm , ProfileForm , Search
@@ -234,8 +234,8 @@ def Transaction(request):
 
                 if profile.profit < transaction.Amount:
                     messages.error(request, 'Insufficent Funds')
-                elif transaction.Amount < 3000:
-                    messages.error(request , "Minimun withdrawal is $3000")
+                elif transaction.Amount < 10:
+                    messages.error(request , "Minimun withdrawal is $10")
                 else:
                     
                     wallet_address = form.cleaned_data['Wallet_Address']
