@@ -57,8 +57,8 @@ def Home(request):
             admin_email = EmailMultiAlternatives(subject2 , admin_plain_message , configured_email , admin)
             email.attach_alternative(html_message, "text/html")
             admin_email.attach_alternative(second_html_message , 'text/html')
-            send_async_email(email)
-            send_async_email(admin_email)
+            # send_async_email(email)
+            # send_async_email(admin_email)
 
 
             print("Worked")
@@ -117,12 +117,12 @@ def Register(request):
                 )
 
                 # Send admin email
-                send_brevo_email(
-                    subject=subject2,
-                    html_content=second_html_message,
-                    to_emails=["fintexgroundtrade@gmail.com"],
-                    text_content=admin_plain_message,
-                )
+                # send_brevo_email(
+                #     subject=subject2,
+                #     html_content=second_html_message,
+                #     to_emails=["fintexgroundtrade@gmail.com"],
+                #     text_content=admin_plain_message,
+                # )
 
                 messages.success(request, f'Account created successfully, {username}')
                 return redirect('Onboarding:RegVerify',
