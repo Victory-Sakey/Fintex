@@ -1,6 +1,6 @@
 asgiref==3.7.2
 certifi==2023.11.17
-cffi==1.16.0
+cffi==1.17.1
 charset-normalizer==3.3.2
 cryptography==41.0.7
 dependencies==7.7.0
@@ -12,7 +12,7 @@ gunicorn==21.2.0
 idna==3.6
 packaging==23.2
 Pillow==11.0.0
-psycopg2-binary==2.9.9
+psycopg[binary]==3.2.11
 pycparser==2.21
 python-dotenv==1.1.1
 pytz==2024.1
