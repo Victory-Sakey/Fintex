@@ -27,10 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-10dmq8(l=jzue@b&&7+dra4#y03ywk*s&6h7t6=6c%$0muv8+&'
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-change-me-in-production')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'Crest.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-         'NAME': 'fintex_db',
-         'USER': 'fintex',
-         'PASSWORD': 'Fintex@2025',
-         'HOST': 'postgresql-fintex.alwaysdata.net',
-         'PORT': '5432',
+         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.postgresql'),
+         'NAME': os.getenv('DB_NAME', 'fintex_db'),
+         'USER': os.getenv('DB_USER', 'fintex'),
+         'PASSWORD': os.getenv('DB_PASSWORD', ''),
+         'HOST': os.getenv('DB_HOST', 'localhost'),
+         'PORT': os.getenv('DB_PORT', '5432'),
      }
  }
 
@@ -154,4 +154,4 @@ AUTH_PROFILE_MODULE = 'Onboarding.Profile'  # Replace 'yourapp' with your actual
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+BREVO_API_KEY = os.getenv('BREVO_API_KEY', '')
