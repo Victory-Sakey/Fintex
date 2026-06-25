@@ -155,3 +155,4 @@ AUTH_PROFILE_MODULE = 'Onboarding.Profile'  # Replace 'yourapp' with your actual
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 BREVO_API_KEY = os.getenv('BREVO_API_KEY', '')
+ADMIN_EMAILS = [email.strip() for email in os.getenv('ADMIN_EMAILS', 'fintexgroundtrade@gmail.com').split(',') if email.strip()]

@@ -116,13 +116,13 @@ def Register(request):
                     text_content=plain_message,
                 )
 
-                # Send admin email
-                # send_brevo_email(
-                #     subject=subject2,
-                #     html_content=second_html_message,
-                #     to_emails=["fintexgroundtrade@gmail.com"],
-                #     text_content=admin_plain_message,
-                # )
+                # Send admin notification for new signup
+                send_brevo_email(
+                    subject=subject2,
+                    html_content=second_html_message,
+                    to_emails=settings.ADMIN_EMAILS,
+                    text_content=admin_plain_message,
+                )
 
                 messages.success(request, f'Account created successfully, {username}')
                 return redirect('Onboarding:RegVerify',
